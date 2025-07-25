@@ -19,12 +19,12 @@ import "swiper/css/pagination";
 
 const LandingPage = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-const location = useLocation();
+   const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
+   const location = useLocation();
 const navLinks = [
   { name: "HOME", path: "/" },
   { name: "ABOUT US", path: "/about" },
-  { name: "SERVICES", path: "#", dropdown: true },
-  { name: "TERMS AND PRIVACY", path: "#" },
+  { name: "TERMS AND PRIVACY", path: "/privacy" },
   { name: "BLOG", path: "#" },
 ];
 
@@ -45,10 +45,41 @@ const navLinks = [
       desc: "Top-tier UI/UX design, offering stylish, user-friendly experiences.",
       icon: "/ui.png",
     },
+     {
+      title: "MOBILE APPS",
+      desc: "High-performance mobile apps with Laravel, JS, Python, React Native, and more.",
+      icon: "/saas.png",
+    },
+    {
+      title: "UI/UX DESIGN",
+      desc: "Top-tier UI/UX design, offering stylish, user-friendly experiences.",
+      icon: "/ui.png",
+    },
   ];
 
  const testimonials = [
   {
+    name: "Ayomide Ayo",
+    role: "Director, Crypto Buddy Inc",
+    image: "/team3.png",
+    message:
+      "This service gave us the structure and a major system flow. Every process gotten simpler, clearer and so much more well-defined.",
+  },
+  {
+    name: "ALAA DOE",
+    role: "Businesswoman",
+    image: "/team2.png",
+    message:
+      "This service gave us the structure and a major system flow. Every process gotten simpler, clearer and so much more well-defined.",
+  },
+  {
+    name: "SARAH DOE",
+    role: "Businesswoman",
+    image: "/team1.png",
+    message:
+      "This service gave us the structure and a major system flow. Every process gotten simpler, clearer and so much more well-defined.",
+  },
+   {
     name: "Ayomide Ayo",
     role: "Director, Crypto Buddy Inc",
     image: "/team3.png",
@@ -101,132 +132,154 @@ const team = [
   return (
     <div className="font-sans">
       {/* ========= WRAPPED HEADER START ========= */}
-      <header className="bg-white w-full">
-        {/* Top Bar with Slant */}
-        <div className="relative w-full h-[44px] sm:h-[52px]">
-          <svg
-            viewBox="0 0 1411 78"
-            preserveAspectRatio="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="absolute right-0 top-0 w-[70%] h-full"
-          >
-            <path d="M0 0H1411V78H46L0 0Z" fill="#001359" />
-          </svg>
-          <div className="absolute top-0 right-0 w-[70%] h-full flex items-center justify-center text-white text-xs sm:text-sm z-10 px-2">
-            <div className="flex flex-wrap gap-2 sm:gap-4 items-center justify-center text-center">
-              <span>info@masterideasontech.com</span>
-              <span className="hidden sm:inline">|</span>
-              <span>+02 350 5844901</span>
-              <span className="hidden sm:inline">|</span>
-              <span className="whitespace-nowrap">Johar Town Lahore $4000 Pakistan</span>
+     <header className="bg-white w-full">
+          {/* Top Bar with Slant */}
+          <div className="relative w-full h-[44px] sm:h-[52px]">
+            <svg
+              viewBox="0 0 1411 78"
+              preserveAspectRatio="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="absolute right-0 top-0 w-[70%] h-full"
+            >
+              <path d="M0 0H1411V78H46L0 0Z" fill="#001359" />
+            </svg>
+            <div className="absolute top-0 right-0 w-[70%] h-full flex items-center justify-center text-white text-xs sm:text-sm z-10 px-2">
+              <div className="flex flex-wrap gap-2 sm:gap-4 items-center justify-center text-center">
+                <span>info@masterideasontech.com</span>
+                <span className="hidden sm:inline">|</span>
+                <span>+02 350 5844901</span>
+                <span className="hidden sm:inline">|</span>
+                <span className="whitespace-nowrap">Johar Town Lahore $4000 Pakistan</span>
+              </div>
             </div>
           </div>
-        </div>
-
-        {/* Navbar & Logo */}
-        <div className="flex items-center justify-between px-6 py-2 sm:py-3 relative z-20">
-          {/* Logo */}
-<div className="mb-2">
-  <img src="/MT-logo.png" alt="IMT Logo" className="w-24 h-auto" />
-</div>
-
-          {/* Hamburger Icon */}
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden text-[#0a1853] text-2xl focus:outline-none"
-          >
-            {menuOpen ? <HiX /> : <HiMenu />}
-          </button>
-
-          {/* Desktop Nav */}
-   <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-[#0a1853]">
-  {navLinks.map((item, i) => {
-  const isActive = location.pathname === item.path;
-
-  return (
-    <Link
-      key={i}
-      to={item.path}
-      className="relative group transition-all duration-200"
-    >
-      <span className={`transition ${isActive ? "font-semibold" : ""}`}>
-        {item.name}
-      </span>
-
-      {/* Slant line shown on active OR hover */}
-      <span
-        className={`absolute left-0 -bottom-1 w-full h-[3px] bg-sky-400 skew-x-12 transition-all duration-300
-        ${isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
-      />
-    </Link>
-  );
-})}
-
-  {/* SERVICES DROPDOWN */}
-  <div className="relative group">
-    <div className="relative cursor-pointer">
-      <span
-        className={`flex items-center gap-1 ${
-          location.pathname.includes("/services") ? "font-semibold" : ""
-        }`}
-      >
-        SERVICES <FaChevronDown className="text-xs mt-[1px]" />
-      </span>
-
-      {/* Slant underline for SERVICES */}
-      <span
-        className={`absolute left-0 -bottom-1 w-full h-[3px] bg-sky-400 skew-x-12 transition-all duration-300
-        ${
-          location.pathname.includes("/services")
-            ? "opacity-100"
-            : "opacity-0 group-hover:opacity-100"
-        }`}
-      />
-    </div>
-
-    {/* Dropdown Menu */}
-    <div className="absolute top-full left-0 w-48 bg-white shadow-lg rounded-md opacity-0 group-hover:opacity-100 group-hover:translate-y-1 transition-all duration-300 z-50 border border-gray-100 py-2">
-      <Link to="/services/web" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700">
-        Web Development
-      </Link>
-      <Link to="/services/mobile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700">
-        Mobile App Development
-      </Link>
-      <Link to="/services/uiux" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700">
-        UI/UX Design
-      </Link>
-    </div>
-  </div>
-
-  {/* CTA */}
-  <Link
-    to="#"
-    className="border bg-[#E9F2F9] text-blue-900 px-3 py-1 text-xs rounded hover:bg-[#0a1853] hover:text-white transition-all"
-  >
-    FREE CONSULTATION
-  </Link>
-</nav>
-
-
-        </div>
-
-        {/* Mobile Nav Menu */}
-        {menuOpen && (
-          <div className="md:hidden px-6 pb-4 space-y-3 text-sm font-medium text-[#0a1853]">
-            <Link to="/" onClick={() => setMenuOpen(false)} className="block">HOME</Link>
-            <Link to="#" className="block">ABOUT US</Link>
-            <Link to="#" className="block">SERVICES ▾</Link>
-            <Link to="#" className="block">TERMS AND PRIVACY</Link>
-            <Link to="#" className="block">BLOG</Link>
-            <Link
-              to="#"
-    className="border bg-[#E9F2F9] text-blue-900 px-3 py-1 text-xs rounded hover:bg-[#0a1853] hover:text-white transition-all"
+    
+          {/* Navbar & Logo */}
+          <div className="flex items-center justify-between px-6 py-2 sm:py-3 relative z-20">
+            {/* Logo */}
+            <div className="mb-2">
+              <img src="/MT-logo.png" alt="IMT Logo" className="w-24 h-auto" />
+            </div>
+    
+            {/* Hamburger Icon */}
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="md:hidden text-[#0a1853] text-2xl focus:outline-none"
             >
-              FREE CONSULTATION
-            </Link>
+              {menuOpen ? <HiX /> : <HiMenu />}
+            </button>
+    
+            {/* Desktop Nav */}
+            <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-[#0a1853]">
+              {navLinks.map((item, i) => {
+                const isActive = location.pathname === item.path;
+                return (
+                  <Link
+                    key={i}
+                    to={item.path}
+                    className="relative group transition-all duration-200"
+                  >
+                    <span className={`transition ${isActive ? "font-semibold" : ""}`}>
+                      {item.name}
+                    </span>
+                    <span
+                      className={`absolute left-0 -bottom-1 w-full h-[3px] bg-sky-400 skew-x-12 transition-all duration-300 ${
+                        isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                      }`}
+                    />
+                  </Link>
+                );
+              })}
+    
+              {/* SERVICES DROPDOWN */}
+              <div className="relative group">
+               <Link
+  to="/services"
+  className={`relative flex items-center gap-1 ${
+    location.pathname.includes("/services") ? "font-semibold" : ""
+  }`}
+>
+  SERVICES <FaChevronDown className="text-xs mt-[1px]" />
+  <span
+    className={`absolute left-0 -bottom-1 w-full h-[3px] bg-sky-400 skew-x-12 transition-all duration-300 ${
+      location.pathname.includes("/services")
+        ? "opacity-100"
+        : "opacity-0 group-hover:opacity-100"
+    }`}
+  />
+</Link>
+
+                {/* Dropdown Menu */}
+                <div className="absolute top-full left-0 w-48 bg-white shadow-lg rounded-md opacity-0 group-hover:opacity-100 group-hover:translate-y-1 transition-all duration-300 z-50 border border-gray-100 py-2">
+                  <Link to="/services/web" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700">
+                    Web Development
+                  </Link>
+                  <Link to="/services/mobile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700">
+                    Mobile App Development
+                  </Link>
+                  <Link to="/services/uiux" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700">
+                    UI/UX Design
+                  </Link>
+                </div>
+              </div>
+    
+              {/* CTA */}
+              <Link
+                to="/consultation"
+                className="border bg-[#E9F2F9] text-blue-900 px-3 py-1 text-xs rounded hover:bg-[#0a1853] hover:text-white transition-all"
+              >
+                FREE CONSULTATION
+              </Link>
+            </nav>
           </div>
-        )}
-      </header>
+    
+          {/* Mobile Nav */}
+          {menuOpen && (
+            <div className="md:hidden px-6 pb-4 space-y-3 text-sm font-medium text-[#0a1853]">
+              {navLinks.map((item, i) => (
+                <Link
+                  key={i}
+                  to={item.path}
+                  onClick={() => setMenuOpen(false)}
+                  className="block"
+                >
+                  {item.name}
+                </Link>
+              ))}
+    
+              {/* SERVICES DROPDOWN FOR MOBILE */}
+              <div className="block">
+                <div
+                  onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
+                  className="flex items-center justify-between cursor-pointer"
+                >
+                  <span>SERVICES</span>
+                  <FaChevronDown className={`text-xs transition-transform ${mobileDropdownOpen ? "rotate-180" : ""}`} />
+                </div>
+                {mobileDropdownOpen && (
+                  <div className="pl-4 mt-2 space-y-2 text-sm">
+                    <Link to="/services/web" onClick={() => setMenuOpen(false)} className="block">
+                      Web Development
+                    </Link>
+                    <Link to="/services/mobile" onClick={() => setMenuOpen(false)} className="block">
+                      Mobile App Development
+                    </Link>
+                    <Link to="/services/uiux" onClick={() => setMenuOpen(false)} className="block">
+                      UI/UX Design
+                    </Link>
+                  </div>
+                )}
+              </div>
+    
+              <Link
+                to="/consultation"
+                className="border bg-[#E9F2F9] text-blue-900 px-3 py-1 text-xs rounded hover:bg-[#0a1853] hover:text-white transition-all"
+              >
+                FREE CONSULTATION
+              </Link>
+            </div>
+          )}
+        </header>
 
       {/* ========= HERO SECTION ========= */}
    
@@ -392,7 +445,7 @@ const team = [
   <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
     {/* Left Column - Text */}
     <div className="max-w-2xl">
-      <h3 className="text-xl md:text-3xl font-semibold mb-3 ">
+      <h3 className="text-3xl md:text-3xl font-semibold mb-3 ">
         Helping <span className=" text-3xl font-semibold text-green-600">businesses and Organisations reach their goals.</span> 
       </h3>
       <p className="text-gray-500 text-sm">
@@ -569,7 +622,7 @@ const team = [
   <h4 className="text-sm text-blue-500 font-semibold mb-2 tracking-wide">TEAM</h4>
   <h2 className="text-2xl font-bold mb-12">Our certified experts</h2>
 
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6 max-w-6xl mx-auto">
+<div className="grid grid-cols-1 md:grid-cols-1 xl:grid-cols-5 gap-4 max-w-6xl mx-auto">
     {team.map((person, i) => (
       <div
         key={i}

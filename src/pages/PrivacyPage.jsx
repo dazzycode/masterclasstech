@@ -7,13 +7,13 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
  
-export default function AboutPage() {
+export default function PrivacyPage() {
       const [menuOpen, setMenuOpen] = useState(false);
        const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
        const location = useLocation();
 const navLinks = [
   { name: "HOME", path: "/" },
-  { name: "ABOUT US", path: "#" },
+  { name: "ABOUT US", path: "/about" },
   { name: "TERMS AND PRIVACY", path: "/privacy" },
   { name: "BLOG", path: "#" },
 ];
@@ -173,82 +173,154 @@ const navLinks = [
        </header>
 
       {/* Main Section */}
-      <main className="px-4 py-12 max-w-5xl mx-auto text-center">
-  {/* Left: Logo */}
-  <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start gap-8 mb-12 px-4">
-  {/* Left: Logo */}
-  <div className="md:w-1/3 w-full flex justify-center md:justify-start">
-    <img
-      src="/MT.png"
-      alt="IMT Logo"
-      className="w-32 h-32 object-contain"
-    />
-  </div>
+   
+    <div className="bg-white text-gray-800 font-sans">
+      {/* Header Section */}
+      <div className="bg-[#0B1C49] text-white py-12 px-4 text-center">
+        <h1 className="text-3xl font-bold mb-2">TERMS AND PRIVACY</h1>
+        <p className="max-w-xl mx-auto">
+          Please review our Terms and Privacy Policy to understand how we protect your data
+          and outline your rights while using our services.
+        </p>
+      </div>
 
-  {/* Right: Text Content */}
-  <div className="md:w-2/3 w-full text-left">
-    <h1 className="text-2xl font-semibold mb-4">
-      Welcome to Interactive Tech Solutions
-    </h1>
-    <p className="text-gray-600 mb-6">
-      At Interactive Tech Solutions, we understand software development is not a transformation; it's an evolution. We combine experience, creativity, and expertise to create solutions that adapt to your unique challenges and goals. Our commitment is to craft high-performing solutions that are impactful and forward-thinking.
-    </p>
-    <p className="text-gray-600 mb-8">
-      Thank you for considering Interactive Tech Solutions as we make this journey together.
-    </p>
-        <p className="text-gray-800 font-medium mb-2">Sincerely,</p>
+      {/* Main Content */}
+      <div className="max-w-6xl mx-auto px-4 py-10 flex flex-col lg:flex-row gap-8">
+        {/* Left: Terms Content */}
+        <div className="flex-1 space-y-2 text-sm leading-6">
+          {[
+            {
+              title: "1. Introduction",
+              content: `Welcome to [Your Company Name] ("we", "our", or "us"). By using our website, services, mobile applications, or any associated digital platform (collectively, the "Services"), you agree to be bound by the following Terms of Service ("Terms") and our Privacy Policy ("Policy"). These documents outline the rules and responsibilities that govern your use of our Services and describe how we collect, use, and safeguard your personal information.
+Please read these Terms and this Policy carefully. If you do not agree with any part of these documents, you must not access or use our Services.`
+            },
+            {
+              title: "2. Eligibility",
+              content: `By using our Services, you affirm that you are at least 18 years old or the age of majority in your jurisdiction. If you are using our Services on behalf of an organization or entity, you represent and warrant that you have the authority to bind that entity to these Terms.`
+            },
+            {
+              title: "3. Use of Services",
+              content: `You agree to use our Services only for lawful purposes...`
+            },
+            {
+              title: "4. Account Registration",
+              content: `Some Services may require you to create an account...`
+            },
+            {
+              title: "5. Intellectual Property Rights",
+              content: `All content, features, and functionality... are protected by intellectual property laws...`
+            },
+            {
+              title: "6. User Content",
+              content: `If you submit content through our Services, you grant us a worldwide license...`
+            },
+            {
+              title: "7. Payments and Subscriptions",
+              content: `If your access to Services requires payment, you agree to pay all associated fees...`
+            },
+            {
+              title: "8. Termination",
+              content: `We reserve the right to suspend or terminate your access at any time...`
+            },
+            {
+              title: "9. Third-Party Links",
+              content: `Our Services may contain links to third-party sites...`
+            },
+            {
+              title: "10. Disclaimers",
+              content: `Services are provided "as is" without warranties...`
+            },
+            {
+              title: "11. Limitation of Liability",
+              content: `To the fullest extent permitted by law... our liability is limited...`
+            },
+            {
+              title: "12. Indemnification",
+              content: `You agree to defend and indemnify [Your Company Name]...`
+            },
+            {
+              title: "13. Privacy Policy",
+              content: `We collect and use personal data as outlined below.`
+            },
+            {
+              title: "13.1. Information We Collect",
+              content: `We may collect personal data like name, email, etc.`
+            },
+            {
+              title: "13.2. How We Use Your Information",
+              content: `To provide, improve, and secure our services...`
+            },
+            {
+              title: "13.3. Data Sharing",
+              content: `We may share data with service providers under confidentiality...`
+            },
+            {
+              title: "13.4. Data Retention",
+              content: `We retain your data only as long as necessary...`
+            },
+            {
+              title: "13.5. Cookies and Tracking",
+              content: `We may use cookies to enhance user experience.`
+            },
+            {
+              title: "13.6. Children’s Privacy",
+              content: `Our Services are not intended for users under 13.`
+            },
+            {
+              title: "13.7. International Users",
+              content: `Your data may be processed outside your home country...`
+            },
+            {
+              title: "14. Changes to Terms and Privacy Policy",
+              content: `We may update our Terms and Policy. Please review regularly.`
+            },
+          ].map((section, index) => (
+            <div key={index} id={`section-${index}`}>
+              <h2 className="font-semibold text-base ">{section.title}</h2>
+              <p>{section.content}</p>
+            </div>
+          ))}
+        </div>
 
-    <p className="text-gray-800 font-medium mb-2">Peter Abiola</p>
-    <p className="text-gray-500">Founder & CEO, Interactive Tech Solutions</p>
-  </div>
-</div>
-
-
-        {/* Feature Cards */}
-      {/* Feature Cards */}
-<div className="space-y-6 max-w-6xl mx-auto px-4">
-  {/* Top row - 3 cards */}
-  <div className="grid md:grid-cols-3 gap-6">
-    <div className="bg-blue-50 p-4 rounded shadow">
-      <h3 className="font-semibold text-blue-900 mb-2">Our Expertise</h3>
-      <p className="text-sm text-gray-700">
-        We help navigate digital transformation with our multi-disciplinary experience in modern technologies.
-      </p>
-    </div>
-    <div className="bg-green-50 p-4 rounded shadow">
-      <h3 className="font-semibold text-green-900 mb-2">Core Values</h3>
-      <p className="text-sm text-gray-700">
-        Integrity, collaboration, and excellence drive our client solutions and team culture.
-      </p>
-    </div>
-    <div className="bg-purple-50 p-4 rounded shadow">
-      <h3 className="font-semibold text-purple-900 mb-2">Client-Centric Approach</h3>
-      <p className="text-sm text-gray-700">
-        We align our success with yours, ensuring client satisfaction is our top priority.
-      </p>
-    </div>
-  </div>
-
-  {/* Bottom row - 2 cards centered */}
-  <div className="flex justify-center gap-6 flex-wrap">
-    <div className="bg-pink-50 p-4 rounded shadow w-full sm:w-[300px]">
-      <h3 className="font-semibold text-pink-900 mb-2">Pioneering Innovation</h3>
-      <p className="text-sm text-gray-700">
-        Our products are made to adapt, scale, and perform in rapidly changing environments.
-      </p>
-    </div>
-    <div className="bg-sky-50 p-4 rounded shadow w-full sm:w-[300px]">
-      <h3 className="font-semibold text-sky-900 mb-2">Your Digital Transformation Partner</h3>
-      <p className="text-sm text-gray-700">
-        We partner with you to turn digital goals into successful realities.
-      </p>
-    </div>
-  </div>
-</div>
-
-      </main>
-
-      {/* Footer */}
+        {/* Right: Table of Contents */}
+        <aside className="lg:w-64 lg:sticky lg:top-24 text-sm border-l pl-6 hidden lg:block">
+          <h3 className="font-semibold mb-4">Table of Contents</h3>
+          <ul className="space-y-2">
+            {[
+              "Introduction",
+              "Eligibility",
+              "Use of Services",
+              "Account Registration",
+              "Intellectual Property Rights",
+              "User Content",
+              "Payments and Subscriptions",
+              "Termination",
+              "Third-Party Links",
+              "Disclaimers",
+              "Limitation of Liability",
+              "Indemnification",
+              "Privacy Policy",
+              "Information We Collect",
+              "How We Use Your Information",
+              "Data Sharing",
+              "Data Retention",
+              "Cookies and Tracking",
+              "Children’s Privacy",
+              "International Users",
+              "Changes to Terms and Privacy Policy"
+            ].map((item, i) => (
+              <li key={i}>
+                <a href={`#section-${i}`} className="text-blue-600 hover:underline">
+        
+          {item}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      </div>
+    </div>
+ {/* Footer */}
       <footer className="bg-gray-50 mt-12 py-10 text-sm text-gray-600">
         <div className="max-w-6xl mx-auto px-4 md:flex justify-between">
           <div className="mb-6 md:mb-0">
