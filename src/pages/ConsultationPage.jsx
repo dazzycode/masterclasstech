@@ -82,26 +82,25 @@ const services = [
       <header className="bg-white w-full">
         {/* Top Slant Bar */}
         <div className="relative w-full h-[44px] sm:h-[52px]">
-          <svg
-            viewBox="0 0 1411 78"
-            preserveAspectRatio="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="absolute right-0 top-0 w-[70%] h-full"
-          >
-            <path d="M0 0H1411V78H46L0 0Z" fill="#001359" />
-          </svg>
-          <div className="absolute top-0 right-0 w-[70%] h-full flex items-center justify-center text-white text-xs sm:text-sm z-10 px-2">
-            <div className="flex flex-wrap gap-2 sm:gap-4 items-center justify-center text-center">
-              <span>info@masterideasontech.com</span>
-              <span className="hidden sm:inline">|</span>
-              <span>+02 350 5844901</span>
-              <span className="hidden sm:inline">|</span>
-              <span className="whitespace-nowrap">
-                Johar Town Lahore $4000 Pakistan
-              </span>
-            </div>
-          </div>
-        </div>
+  <svg
+    viewBox="0 0 1411 78"
+    preserveAspectRatio="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="absolute right-0 top-0 w-full sm:w-[70%] h-full"
+  >
+    <path d="M0 0H1411V78H46L0 0Z" fill="#001359" />
+  </svg>
+
+  <div className="absolute top-0 right-0 w-full sm:w-[70%] h-full flex items-center justify-center text-white text-[10px] sm:text-xs md:text-sm z-10 px-2">
+    <div className="flex flex-wrap gap-1 sm:gap-4 items-center justify-center text-center leading-tight">
+      <span>info@masterideasontech.com</span>
+      <span className="hidden sm:inline">|</span>
+      <span>+02 350 5844901</span>
+      <span className="hidden sm:inline">|</span>
+      <span className="whitespace-nowrap hidden xs:inline sm:inline">Johar Town Lahore $4000 Pakistan</span>
+    </div>
+  </div>
+</div>
 
         {/* Navbar */}
         <div className="flex items-center justify-between px-6 py-2 sm:py-3 relative z-20">
@@ -205,12 +204,14 @@ const services = [
                 onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
                 className="flex items-center justify-between cursor-pointer"
               >
-                <span>SERVICES</span>
-                <FaChevronDown
-                  className={`text-xs transition-transform ${
-                    mobileDropdownOpen ? "rotate-180" : ""
-                  }`}
-                />
+                <Link to="/services" className="inline-flex items-center gap-1 text-sm font-medium">
+  <span>SERVICES</span>
+  <FaChevronDown
+    className={`text-xs transition-transform ${
+      mobileDropdownOpen ? "rotate-180" : ""
+    }`}
+  />
+</Link>
               </div>
               {mobileDropdownOpen && (
                 <div className="pl-4 mt-2 space-y-2 text-sm">
@@ -250,119 +251,121 @@ const services = [
 
       {/* Main Content */}
       <div className="">
-        <div className=" bg-[#001359] w-full justify-center py-20 px-20 text-white text-center mb-12">
+       <div className="bg-[#001359] w-full py-16 px-4 sm:px-8 text-white text-center mb-12">
+  <div className="max-w-5xl mx-auto">
+    {/* Info Buttons */}
+    <div className="flex flex-wrap justify-center items-center gap-4 mb-6">
+      {/* Projects Completed */}
+      <button className="bg-[#FFFFFF1A] text-white inline-flex items-center gap-2 px-4 py-2 rounded-full shadow text-xs sm:text-sm">
+        <FaCheckCircle className="text-blue-300 text-base" />
+        <span className="font-semibold">100+ Projects Completed</span>
+      </button>
 
-  <div className="text-center px-4 sm:px-8">
-  {/* Info Buttons */}
-  <div className="flex justify-center items-center flex-wrap gap-4 mb-6">
-    {/* Projects Completed */}
-    <button className="bg-[#FFFFFF1A] text-white inline-flex items-center gap-2 px-4 py-2 rounded-full shadow">
-      <FaCheckCircle className="text-blue-300 text-lg" />
-      <span className="text-sm font-semibold">100+ Projects Completed</span>
-    </button>
+      {/* Happy Clients */}
+      <button className="bg-[#FFFFFF1A] text-white inline-flex items-center gap-2 px-4 py-2 rounded-full shadow text-xs sm:text-sm">
+        <FaUserFriends className="text-blue-300 text-base" />
+        <span className="font-semibold">50+ Happy Clients</span>
+      </button>
 
-    {/* Happy Clients */}
-    <button className="bg-[#FFFFFF1A] text-white inline-flex items-center gap-2 px-4 py-2 rounded-full shadow">
-      <FaUserFriends className="text-blue-300 text-lg" />
-      <span className="text-sm font-semibold">50+ Happy Clients</span>
-    </button>
+      {/* 5-Star Reviews */}
+      <button className="bg-[#FFFFFF1A] text-white inline-flex items-center gap-2 px-4 py-2 rounded-full shadow text-xs sm:text-sm">
+        <FaStar className="text-[#FACC15] text-base" />
+        <span className="font-semibold">5-Star Reviews</span>
+      </button>
+    </div>
 
-    {/* 5-Star Reviews */}
-    <button className="bg-[#FFFFFF1A] text-white inline-flex items-center gap-2 px-4 py-2 rounded-full shadow">
-      <FaStar className="text-[#FACC15] text-lg" />
-      <span className="text-sm font-semibold">5-Star Reviews</span>
-    </button>
+    {/* Heading & Description */}
+    <h1 className="text-2xl sm:text-3xl font-bold text-white mb-3">
+      Book a Free Consultation
+    </h1>
+    <p className="text-sm sm:text-base max-w-xl mx-auto mb-6 text-white">
+      Let’s talk about your <strong>Website</strong>, <strong>Mobile App</strong>, or{" "}
+      <strong>Design</strong> project. Schedule a Google Meet session at your convenience.
+    </p>
+
+    {/* Google Meet Button */}
+    <div className="flex items-center justify-center gap-3 mt-6">
+      <img src="/googlemeet.png" alt="Google Meet" className="w-8 h-8" />
+      <span className="text-base sm:text-lg font-semibold text-white">Google Meet</span>
+    </div>
   </div>
+</div>
 
-  {/* Heading & Description */}
-  <h1 className="text-3xl font-bold text-white mb-2">Book a Free Consultation</h1>
-  <p className="text-white max-w-xl mx-auto mb-4">
-    Let’s talk about your <strong>Website</strong>, <strong>Mobile App</strong>, or{" "}
-    <strong>Design</strong> project. Schedule a Google Meet session at your convenience.
+        {/* Services Grid */}
+      <div className="min-h-screen bg-white p-6">
+  <h2 className="text-2xl text-[#001359] font-bold text-center mb-2">
+    What would you like to talk about?
+  </h2>
+  <p className="text-center mb-8 text-gray-600">
+    Choose the service you’re interested in to get started with your project discussion
   </p>
 
-  <div className="flex items-center justify-center gap-2 mt-4">
-  {/* Icon (SVG or imported component) */}
- <div className="flex items-center justify-center gap-3 mt-6">
-  {/* Icon */}
-  <div className="rounded-md inline-flex">
-    <img
-      src="/googlemeet.png"
-      alt="Google Meet"
-      className="w-8 h-8"
-    />
+  {/* Services */}
+  <div className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-6 mb-10">
+    {services.map((service) => (
+      <div
+        key={service.id}
+        onClick={() => setSelectedService(service.id)}
+        className={`cursor-pointer border rounded-xl p-6 w-full max-w-xs mx-auto shadow-sm transition ${
+          selectedService === service.id ? "border-blue-500" : "border-gray-200"
+        }`}
+      >
+        <div className="mb-4">{service.icon}</div>
+        <h3 className="text-lg font-semibold mb-2 text-center">{service.title}</h3>
+        <ul className="text-sm text-gray-600 list-disc list-inside mb-4 text-left">
+          {service.features.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+        <button className="px-4 py-2 w-full border border-dashed border-gray-300 rounded-md text-gray-600 hover:bg-gray-100">
+          Click to Select
+        </button>
+      </div>
+    ))}
   </div>
-  {/* Text */}
-  <span className="text-lg font-semibold text-white">Google Meet </span>
-</div>
-
-
-  {/* Text */}
-</div>
-
-</div>
-</div>
-        {/* Services Grid */}
-       <div className="min-h-screen bg-white p-6">
-      <h2 className="text-2xl text-[#001359] font-bold text-center mb-2">
-        What would you like to talk about?
-      </h2>
-      <p className="text-center mb-8 text-gray-600">
-        Choose the service you’re interested in to get started with your project discussion
-      </p>
-
-      {/* Services */}
-      <div className="flex flex-col md:flex-row justify-center gap-6 mb-10">
-        {services.map((service) => (
-          <div
-            key={service.id}
-            onClick={() => setSelectedService(service.id)}
-            className={`cursor-pointer border rounded-xl p-6 w-full max-w-xs shadow-sm transition ${
-              selectedService === service.id ? "border-blue-500" : "border-gray-200"
-            }`}
-          >
-            <div className="mb-4">{service.icon}</div>
-            <h3 className="text-lg font-semibold mb-2">{service.title}</h3>
-            <ul className="text-sm text-gray-600 list-disc list-inside mb-4">
-              {service.features.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
-           <button className="px-4 py-2 w-full border border-dashed border-gray-300 rounded-md text-gray-600 hover:bg-gray-100">
-  Click to Select
-</button>
-
-          </div>
-        ))}
-      </div>
-
       {/* Time Slot */}
-      <div className="bg-gray-50 p-6 rounded-xl shadow-sm max-w-3xl mx-auto mb-10">
-        <h3 className="text-xl font-semibold mb-4">Choose a Time Slot</h3>
-        <div className="flex flex-col md:flex-row items-start gap-6">
-          {/* Date Picker */}
-          <div className="w-full md:w-1/2">
-            <label className="block text-sm font-medium mb-1">Select Date</label>
-            <input
-              type="date"
-              className="w-full border p-3 rounded-md"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-            />
-          </div>
+    <div className="bg-gray-50 p-6 rounded-xl shadow-sm max-w-3xl mx-auto mb-10">
+  <h3 className="text-xl font-semibold mb-4">Choose a Time Slot</h3>
 
-          {/* Time Picker */}
-          <div className="w-full md:w-1/2">
-            <label className="block text-sm font-medium mb-1">Select Time</label>
-            <input
-              type="time"
-              className="w-full border p-3 rounded-md"
-              value={time}
-              onChange={(e) => setTime(e.target.value)}
-            />
-          </div>
-        </div>
-      </div>
+  <div className="flex flex-col md:flex-row items-start gap-6">
+    {/* Date Picker */}
+    <div className="w-full md:w-1/2">
+      <label className="block text-sm font-medium mb-1">Select Date</label>
+      <input
+        type="date"
+        className="w-full border p-3 rounded-md"
+        value={date}
+        onChange={(e) => setDate(e.target.value)}
+      />
+    </div>
+
+    {/* Time Picker */}
+    <div className="w-full md:w-1/2">
+      <label className="block text-sm font-medium mb-1">Select Time</label>
+      <input
+        type="time"
+        className="w-full border p-3 rounded-md"
+        value={time}
+        onChange={(e) => setTime(e.target.value)}
+      />
+    </div>
+  </div>
+
+  {/* Action Buttons */}
+  <div className="flex justify-end gap-4 mt-6">
+    <button
+      className="px-5 py-2 rounded-md border border-blue-800 text-blue-800 hover:bg-blue-800  hover:text-white transition"
+    >
+      Cancel
+    </button>
+    <button
+      className="px-5 py-2 rounded-md bg-blue-800 text-white hover:bg-[#001040] transition"
+    >
+      Save
+    </button>
+  </div>
+</div>
+
 
       {/* User Info */}
       <div className="max-w-3xl mx-auto bg-white rounded-xl p-6 border shadow-sm">

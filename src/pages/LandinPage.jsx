@@ -134,25 +134,27 @@ const team = [
       {/* ========= WRAPPED HEADER START ========= */}
      <header className="bg-white w-full">
           {/* Top Bar with Slant */}
-          <div className="relative w-full h-[44px] sm:h-[52px]">
-            <svg
-              viewBox="0 0 1411 78"
-              preserveAspectRatio="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="absolute right-0 top-0 w-[70%] h-full"
-            >
-              <path d="M0 0H1411V78H46L0 0Z" fill="#001359" />
-            </svg>
-            <div className="absolute top-0 right-0 w-[70%] h-full flex items-center justify-center text-white text-xs sm:text-sm z-10 px-2">
-              <div className="flex flex-wrap gap-2 sm:gap-4 items-center justify-center text-center">
-                <span>info@masterideasontech.com</span>
-                <span className="hidden sm:inline">|</span>
-                <span>+02 350 5844901</span>
-                <span className="hidden sm:inline">|</span>
-                <span className="whitespace-nowrap">Johar Town Lahore $4000 Pakistan</span>
-              </div>
-            </div>
-          </div>
+        <div className="relative w-full h-[44px] sm:h-[52px]">
+  <svg
+    viewBox="0 0 1411 78"
+    preserveAspectRatio="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="absolute right-0 top-0 w-full sm:w-[70%] h-full"
+  >
+    <path d="M0 0H1411V78H46L0 0Z" fill="#001359" />
+  </svg>
+
+  <div className="absolute top-0 right-0 w-full sm:w-[70%] h-full flex items-center justify-center text-white text-[10px] sm:text-xs md:text-sm z-10 px-2">
+    <div className="flex flex-wrap gap-1 sm:gap-4 items-center justify-center text-center leading-tight">
+      <span>info@masterideasontech.com</span>
+      <span className="hidden sm:inline">|</span>
+      <span>+02 350 5844901</span>
+      <span className="hidden sm:inline">|</span>
+      <span className="whitespace-nowrap hidden xs:inline sm:inline">Johar Town Lahore $4000 Pakistan</span>
+    </div>
+  </div>
+</div>
+
     
           {/* Navbar & Logo */}
           <div className="flex items-center justify-between px-6 py-2 sm:py-3 relative z-20">
@@ -253,8 +255,14 @@ const team = [
                   onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
                   className="flex items-center justify-between cursor-pointer"
                 >
-                  <span>SERVICES</span>
-                  <FaChevronDown className={`text-xs transition-transform ${mobileDropdownOpen ? "rotate-180" : ""}`} />
+                  <Link to="/services" className="inline-flex items-center gap-1 text-sm font-medium">
+  <span>SERVICES</span>
+  <FaChevronDown
+    className={`text-xs transition-transform ${
+      mobileDropdownOpen ? "rotate-180" : ""
+    }`}
+  />
+</Link>
                 </div>
                 {mobileDropdownOpen && (
                   <div className="pl-4 mt-2 space-y-2 text-sm">
@@ -378,13 +386,13 @@ const team = [
 
       {/* Services Carousel */}
     
-<section className="mb-16 px-6 relative">
+<section className="mb-16 px-4 sm:px-6 relative">
   <div className="max-w-6xl mx-auto relative">
-    {/* Custom Arrows */}
-    <button className="swiper-button-prev absolute left-0 top-1/2 -translate-y-1/2 z-20 p-3 bg-white rounded-full shadow-md text-blue-700 hover:bg-blue-100 transition">
+    {/* Custom Arrows - hidden on mobile */}
+    <button className="swiper-button-prev hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 bg-white rounded-full shadow-md text-blue-700 hover:bg-blue-100 transition">
       <FaArrowLeft />
     </button>
-    <button className="swiper-button-next absolute right-0 top-1/2 -translate-y-1/2 z-20 p-3 bg-white rounded-full shadow-md text-blue-700 hover:bg-blue-100 transition">
+    <button className="swiper-button-next hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 bg-white rounded-full shadow-md text-blue-700 hover:bg-blue-100 transition">
       <FaArrowRight />
     </button>
 
@@ -395,12 +403,19 @@ const team = [
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       }}
-      spaceBetween={20}
+      spaceBetween={16}
       slidesPerView={1}
       centeredSlides
       loop
       breakpoints={{
+        640: {
+          slidesPerView: 1.2,
+          centeredSlides: true,
+        },
         768: {
+          slidesPerView: 2,
+        },
+        1024: {
           slidesPerView: 3,
         },
       }}
@@ -409,21 +424,21 @@ const team = [
       {services.map((item, i) => (
         <SwiperSlide key={i}>
           {({ isActive }) => (
-            <div className="relative rounded-xl overflow-hidden transition-all duration-500">
+            <div className="relative px-2 sm:px-0 transition-all duration-500">
               <div
-                className={`bg-white shadow-md rounded-xl px-6 py-8 text-center transition-all duration-500 ${
-                  isActive ? "scale-105" : "scale-95"
+                className={`bg-white shadow-md rounded-xl px-5 py-6 sm:px-6 sm:py-8 text-center transition-all duration-500 ${
+                  isActive ? "scale-100 sm:scale-105" : "scale-95"
                 }`}
               >
                 <img
                   src={item.icon}
                   alt="icon"
-                  className="mx-auto mb-4 w-16 h-16 object-contain"
+                  className="mx-auto mb-3 w-14 h-14 sm:w-16 sm:h-16 object-contain"
                 />
-                <h3 className="font-bold text-lg text-[#001359] mb-2">
+                <h3 className="font-semibold text-base sm:text-lg text-[#001359] mb-2">
                   {item.title}
                 </h3>
-                <p className="text-gray-600 text-sm">{item.desc}</p>
+                <p className="text-gray-600 text-sm sm:text-base">{item.desc}</p>
               </div>
 
               {/* Active Overlay */}
@@ -458,7 +473,7 @@ const team = [
   <div className="flex items-center gap-3">
     <FaUsers size={24} />
     <div>
-      <p className="text-2xl font-bold">2,245,341</p>
+      <p className="text-xl md:text-2xl font-bold">2,245,341</p>
       <span>Members</span>
     </div>
   </div>
@@ -466,7 +481,7 @@ const team = [
   <div className="flex items-center gap-3">
     <FaBicycle size={24} />
     <div>
-      <p className="text-2xl font-bold">46,328</p>
+      <p className="text-xl md:text-2xl  font-bold">46,328</p>
       <span>Clubs</span>
     </div>
   </div>
@@ -474,7 +489,7 @@ const team = [
   <div className="flex items-center gap-3">
     <FaHandMiddleFinger size={24} />
     <div>
-      <p className="text-2xl font-bold">828,867</p>
+      <p className="text-xl md:text-2xl font-bold">828,867</p>
       <span>Event Bookings</span>
     </div>
   </div>
@@ -482,7 +497,7 @@ const team = [
   <div className="flex items-center gap-3">
     <FaWallet size={24} />
     <div>
-      <p className="text-2xl font-bold">1,926,436</p>
+      <p className="text-xl md:text-2xl  font-bold">1,926,436</p>
       <span>Payments</span>
     </div>
   </div>
@@ -549,50 +564,50 @@ const team = [
   
   
     <section className="bg-[#f3f7fb] py-20 px-4">
-      {/* Section heading */}
-      <div className="text-center mb-12">
-        <h2 className="text-2xl md:text-3xl font-bold leading-snug">
-          Scale Your Business with our Expert <br />
-          Web Development Services
-        </h2>
+  {/* Section heading */}
+  <div className="text-center mb-12">
+    <h2 className="text-2xl md:text-3xl font-bold leading-snug">
+      Scale Your Business with our Expert <br />
+      Web Development Services
+    </h2>
+  </div>
+
+  {/* Content */}
+  <div className="relative max-w-6xl mx-auto flex justify-center">
+    {/* Image and floating checklist card */}
+    <div className="relative">
+      <img
+        src="/overlay.png"
+        alt="Web Dev"
+        className="w-[750px] max-w-full rounded-xl shadow-lg"
+      />
+
+      {/* Checklist card - show only on md+ */}
+      <div className="hidden md:block absolute top-1/2 left-[80%] -translate-y-1/2 w-72 bg-white p-6 rounded-xl shadow-lg z-10">
+        <ul className="space-y-3 text-sm text-gray-800">
+          <li className="flex items-start gap-2">
+            <FaCheck className="text-green-600 mt-1" />
+            Share Your Idea
+          </li>
+          <li className="flex items-start gap-2">
+            <FaCheck className="text-green-600 mt-1" />
+            Design Phase
+          </li>
+          <li className="flex items-start gap-2">
+            <FaCheck className="text-green-600 mt-1" />
+            QA (Quality Assurance) Excellence
+          </li>
+          <li className="flex items-start gap-2">
+            <FaCheck className="text-green-600 mt-1" />
+            Scalability and Automation
+          </li>
+        </ul>
       </div>
+    </div>
 
-      {/* Content */}
-      <div className="relative max-w-6xl mx-auto flex justify-center">
-        {/* Image and floating checklist card */}
-        <div className="relative">
-          <img
-            src="/overlay.png" // your image path
-            alt="Web Dev"
-            className="w-[750px] max-w-full rounded-xl shadow-lg"
-          />
-
-          {/* Floating white card */}
-<div className="absolute top-1/2 left-[80%] -translate-y-1/2 w-72 bg-white p-6 rounded-xl shadow-lg z-10">
-  <ul className="space-y-3 text-sm text-gray-800">
-    <li className="flex items-start gap-2">
-      <FaCheck className="text-green-600 mt-1" />
-      Share Your Idea
-    </li>
-    <li className="flex items-start gap-2">
-      <FaCheck className="text-green-600 mt-1" />
-      Design Phase
-    </li>
-    <li className="flex items-start gap-2">
-      <FaCheck className="text-green-600 mt-1" />
-      QA (Quality Assurance) Excellence
-    </li>
-    <li className="flex items-start gap-2">
-      <FaCheck className="text-green-600 mt-1" />
-      Scalability and Automation
-    </li>
-  </ul>
-</div>
-
-        </div>
-       {/* Floating 3 cards positioned from bottom right f image */}
-    <div className="absolute bottom-0 left-[30%] translate-y-1/2 z-20">
-      <div className="flex flex-col md:flex-row ">
+    {/* Bottom 3 floating cards - only visible on md+ */}
+    <div className="hidden md:block absolute bottom-0 left-[30%] translate-y-1/2 z-20">
+      <div className="flex flex-col md:flex-row gap-4">
         <div className="bg-teal-700 text-white p-6 rounded-lg shadow-lg w-60">
           <h4 className="font-bold text-lg mb-2">OUR VALUE</h4>
           <p className="text-sm leading-relaxed">
@@ -613,36 +628,41 @@ const team = [
         </div>
       </div>
     </div>
- </div>
-    </section>
+  </div>
+</section>
+
  
 
       {/* Team Section */}
-   <section className="py-16 px-6 text-center bg-white">
-  <h4 className="text-sm text-blue-500 font-semibold mb-2 tracking-wide">TEAM</h4>
-  <h2 className="text-2xl font-bold mb-12">Our certified experts</h2>
+ <section className="py-12 px-4 sm:px-6 text-center bg-white">
+  <h4 className="text-xs sm:text-sm text-blue-500 font-semibold mb-2 tracking-wide">
+    TEAM
+  </h4>
+  <h2 className="text-xl sm:text-2xl font-bold mb-10 sm:mb-12">
+    Our certified experts
+  </h2>
 
-<div className="grid grid-cols-1 md:grid-cols-1 xl:grid-cols-5 gap-4 max-w-6xl mx-auto">
+  <div className="grid grid-cols-1 xl:grid-cols-5 gap-6 max-w-6xl mx-auto">
     {team.map((person, i) => (
       <div
         key={i}
-        className="bg-[#f8f9fb] rounded-lg shadow-md p-4 transform transition duration-300 hover:scale-105 hover:shadow-lg"
+        className="bg-[#f8f9fb] rounded-lg shadow-md p-4 sm:p-5 w-full max-w-[300px] mx-auto transform transition duration-300 hover:scale-105 hover:shadow-lg"
       >
         <img
           src={person.img}
           alt={person.name}
           className="w-full h-[150px] object-cover rounded-md mb-4"
         />
-        <p className="font-semibold">{person.name}</p>
-        <p className="text-sm text-gray-500 mb-4">{person.role}</p>
+        <p className="font-semibold text-sm sm:text-base">{person.name}</p>
+        <p className="text-xs text-gray-500 mb-4">{person.role}</p>
 
         <div className="flex justify-center gap-2">
           {[FaFacebookF, FaLinkedinIn, FaTwitter].map((Icon, idx) => (
             <div
               key={idx}
-              className="w-7 h-7 flex items-center justify-center rounded-full border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition duration-300 cursor-pointer"
+              className="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center rounded-full border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition duration-300 cursor-pointer"
             >
-              <Icon size={12} />
+              <Icon size={10} className="sm:size-3" />
             </div>
           ))}
         </div>
@@ -650,6 +670,7 @@ const team = [
     ))}
   </div>
 </section>
+
 
       {/* CTA Section */}
       <section className="text-center py-16 bg-[#f3f7f9] px-4">

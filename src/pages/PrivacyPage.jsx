@@ -24,25 +24,26 @@ const navLinks = [
       {/* ========= WRAPPED HEADER START ========= */}
       <header className="bg-white w-full">
          {/* Top Bar with Slant */}
-         <div className="relative w-full h-[44px] sm:h-[52px]">
-           <svg
-             viewBox="0 0 1411 78"
-             preserveAspectRatio="none"
-             xmlns="http://www.w3.org/2000/svg"
-             className="absolute right-0 top-0 w-[70%] h-full"
-           >
-             <path d="M0 0H1411V78H46L0 0Z" fill="#001359" />
-           </svg>
-           <div className="absolute top-0 right-0 w-[70%] h-full flex items-center justify-center text-white text-xs sm:text-sm z-10 px-2">
-             <div className="flex flex-wrap gap-2 sm:gap-4 items-center justify-center text-center">
-               <span>info@masterideasontech.com</span>
-               <span className="hidden sm:inline">|</span>
-               <span>+02 350 5844901</span>
-               <span className="hidden sm:inline">|</span>
-               <span className="whitespace-nowrap">Johar Town Lahore $4000 Pakistan</span>
-             </div>
-           </div>
-         </div>
+        <div className="relative w-full h-[44px] sm:h-[52px]">
+  <svg
+    viewBox="0 0 1411 78"
+    preserveAspectRatio="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="absolute right-0 top-0 w-full sm:w-[70%] h-full"
+  >
+    <path d="M0 0H1411V78H46L0 0Z" fill="#001359" />
+  </svg>
+
+  <div className="absolute top-0 right-0 w-full sm:w-[70%] h-full flex items-center justify-center text-white text-[10px] sm:text-xs md:text-sm z-10 px-2">
+    <div className="flex flex-wrap gap-1 sm:gap-4 items-center justify-center text-center leading-tight">
+      <span>info@masterideasontech.com</span>
+      <span className="hidden sm:inline">|</span>
+      <span>+02 350 5844901</span>
+      <span className="hidden sm:inline">|</span>
+      <span className="whitespace-nowrap hidden xs:inline sm:inline">Johar Town Lahore $4000 Pakistan</span>
+    </div>
+  </div>
+</div>
    
          {/* Navbar & Logo */}
          <div className="flex items-center justify-between px-6 py-2 sm:py-3 relative z-20">
@@ -144,8 +145,14 @@ const navLinks = [
                  onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
                  className="flex items-center justify-between cursor-pointer"
                >
-                 <span>SERVICES</span>
-                 <FaChevronDown className={`text-xs transition-transform ${mobileDropdownOpen ? "rotate-180" : ""}`} />
+                <Link to="/services" className="inline-flex items-center gap-1 text-sm font-medium">
+  <span>SERVICES</span>
+  <FaChevronDown
+    className={`text-xs transition-transform ${
+      mobileDropdownOpen ? "rotate-180" : ""
+    }`}
+  />
+</Link>
                </div>
                {mobileDropdownOpen && (
                  <div className="pl-4 mt-2 space-y-2 text-sm">
