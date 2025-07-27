@@ -17,6 +17,23 @@ const navLinks = [
   { name: "TERMS AND PRIVACY", path: "/privacy" },
   { name: "BLOG", path: "#" },
 ];
+const sections = [
+    { id: "introduction", title: "1. Introduction", content: `Welcome to [Your Company Name] (“we”, “our”, or “us”). By using our websites, services, mobile applications, or any associated digital platform (collectively, the “Services”), you agree to be bound by the following Terms of Service and our Privacy Policy.` },
+    { id: "eligibility", title: "2. Eligibility", content: `You must be at least 18 years old or of age of majority in your jurisdiction.` },
+    { id: "use", title: "3. Use of Services", content: (
+      <ul className="list-disc list-inside space-y-1">
+        <li>Only use our services for lawful purposes.</li>
+        <li>Do not infringe intellectual property rights.</li>
+        <li>Do not upload viruses or harmful software.</li>
+      </ul>
+    )},
+    { id: "account", title: "4. Account Registration", content: `You are responsible for keeping your login credentials secure. You agree to update your information promptly if it changes.` },
+    { id: "ip", title: "5. Intellectual Property Rights", content: `All content on the Services—including text, graphics, logos, icons, and software—is the property of [Your Company Name]. You may not reproduce or distribute it without our permission.` },
+    { id: "content", title: "6. User Content", content: `By submitting content, you grant us a non-exclusive, royalty-free license to use, reproduce, and distribute your content.` },
+    { id: "payments", title: "7. Payments and Subscriptions", content: `You agree to pay all applicable fees and are responsible for charges unless canceled on time.` },
+    { id: "termination", title: "8. Termination", content: `We reserve the right to suspend or terminate access for violating these terms. Upon termination, all rights granted to you cease immediately.` },
+  ];
+
   return (
     <div className="min-h-screen bg-white text-gray-800">
       {/* Top Nav */}
@@ -36,11 +53,12 @@ const navLinks = [
 
   <div className="absolute top-0 right-0 w-full sm:w-[70%] h-full flex items-center justify-center text-white text-[10px] sm:text-xs md:text-sm z-10 px-2">
     <div className="flex flex-wrap gap-1 sm:gap-4 items-center justify-center text-center leading-tight">
-      <span>info@masterideasontech.com</span>
+      <span>Masterclasstech00@gmail.com</span>
       <span className="hidden sm:inline">|</span>
-      <span>+02 350 5844901</span>
+      <span>+2348132574791</span>
       <span className="hidden sm:inline">|</span>
-      <span className="whitespace-nowrap hidden xs:inline sm:inline">Johar Town Lahore $4000 Pakistan</span>
+      <span className="whitespace-nowrap hidden xs:inline sm:inline">No. 6 NSCDC Olorunda Akobo Ibadan.
+</span>
     </div>
   </div>
 </div>
@@ -181,152 +199,37 @@ const navLinks = [
 
       {/* Main Section */}
    
-    <div className="bg-white text-gray-800 font-sans">
-      {/* Header Section */}
-      <div className="bg-[#0B1C49] text-white py-12 px-4 text-center">
-        <h1 className="text-3xl font-bold mb-2">TERMS AND PRIVACY</h1>
-        <p className="max-w-xl mx-auto">
-          Please review our Terms and Privacy Policy to understand how we protect your data
-          and outline your rights while using our services.
-        </p>
-      </div>
+  
+  
+    <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 lg:grid-cols-4 gap-8">
 
-      {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-4 py-10 flex flex-col lg:flex-row gap-8">
-        {/* Left: Terms Content */}
-        <div className="flex-1 space-y-2 text-sm leading-6">
-          {[
-            {
-              title: "1. Introduction",
-              content: `Welcome to [Your Company Name] ("we", "our", or "us"). By using our website, services, mobile applications, or any associated digital platform (collectively, the "Services"), you agree to be bound by the following Terms of Service ("Terms") and our Privacy Policy ("Policy"). These documents outline the rules and responsibilities that govern your use of our Services and describe how we collect, use, and safeguard your personal information.
-Please read these Terms and this Policy carefully. If you do not agree with any part of these documents, you must not access or use our Services.`
-            },
-            {
-              title: "2. Eligibility",
-              content: `By using our Services, you affirm that you are at least 18 years old or the age of majority in your jurisdiction. If you are using our Services on behalf of an organization or entity, you represent and warrant that you have the authority to bind that entity to these Terms.`
-            },
-            {
-              title: "3. Use of Services",
-              content: `You agree to use our Services only for lawful purposes...`
-            },
-            {
-              title: "4. Account Registration",
-              content: `Some Services may require you to create an account...`
-            },
-            {
-              title: "5. Intellectual Property Rights",
-              content: `All content, features, and functionality... are protected by intellectual property laws...`
-            },
-            {
-              title: "6. User Content",
-              content: `If you submit content through our Services, you grant us a worldwide license...`
-            },
-            {
-              title: "7. Payments and Subscriptions",
-              content: `If your access to Services requires payment, you agree to pay all associated fees...`
-            },
-            {
-              title: "8. Termination",
-              content: `We reserve the right to suspend or terminate your access at any time...`
-            },
-            {
-              title: "9. Third-Party Links",
-              content: `Our Services may contain links to third-party sites...`
-            },
-            {
-              title: "10. Disclaimers",
-              content: `Services are provided "as is" without warranties...`
-            },
-            {
-              title: "11. Limitation of Liability",
-              content: `To the fullest extent permitted by law... our liability is limited...`
-            },
-            {
-              title: "12. Indemnification",
-              content: `You agree to defend and indemnify [Your Company Name]...`
-            },
-            {
-              title: "13. Privacy Policy",
-              content: `We collect and use personal data as outlined below.`
-            },
-            {
-              title: "13.1. Information We Collect",
-              content: `We may collect personal data like name, email, etc.`
-            },
-            {
-              title: "13.2. How We Use Your Information",
-              content: `To provide, improve, and secure our services...`
-            },
-            {
-              title: "13.3. Data Sharing",
-              content: `We may share data with service providers under confidentiality...`
-            },
-            {
-              title: "13.4. Data Retention",
-              content: `We retain your data only as long as necessary...`
-            },
-            {
-              title: "13.5. Cookies and Tracking",
-              content: `We may use cookies to enhance user experience.`
-            },
-            {
-              title: "13.6. Children’s Privacy",
-              content: `Our Services are not intended for users under 13.`
-            },
-            {
-              title: "13.7. International Users",
-              content: `Your data may be processed outside your home country...`
-            },
-            {
-              title: "14. Changes to Terms and Privacy Policy",
-              content: `We may update our Terms and Policy. Please review regularly.`
-            },
-          ].map((section, index) => (
-            <div key={index} id={`section-${index}`}>
-              <h2 className="font-semibold text-base ">{section.title}</h2>
-              <p>{section.content}</p>
-            </div>
-          ))}
-        </div>
+      {/* Main Terms Section */}
+      <div className="lg:col-span-3 space-y-8">
+        {sections.map((section) => (
+          <section key={section.id} id={section.id}>
+            <h2 className="text-xl font-bold mb-2">{section.title}</h2>
+            <div className="text-gray-700 text-sm leading-relaxed">{section.content}</div>
+          </section>
+        ))}
+      </div>
 
-        {/* Right: Table of Contents */}
-        <aside className="lg:w-64 lg:sticky lg:top-24 text-sm border-l pl-6 hidden lg:block">
-          <h3 className="font-semibold mb-4">Table of Contents</h3>
-          <ul className="space-y-2">
-            {[
-              "Introduction",
-              "Eligibility",
-              "Use of Services",
-              "Account Registration",
-              "Intellectual Property Rights",
-              "User Content",
-              "Payments and Subscriptions",
-              "Termination",
-              "Third-Party Links",
-              "Disclaimers",
-              "Limitation of Liability",
-              "Indemnification",
-              "Privacy Policy",
-              "Information We Collect",
-              "How We Use Your Information",
-              "Data Sharing",
-              "Data Retention",
-              "Cookies and Tracking",
-              "Children’s Privacy",
-              "International Users",
-              "Changes to Terms and Privacy Policy"
-            ].map((item, i) => (
-              <li key={i}>
-                <a href={`#section-${i}`} className="text-blue-600 hover:underline">
-        
-          {item}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </aside>
-      </div>
-    </div>
+      {/* Sidebar Table of Contents */}
+      <aside className="lg:col-span-1 bg-gray-50 border border-gray-200 p-6 rounded-md sticky top-6 h-fit">
+        <h3 className="text-lg font-semibold mb-4">Table of Contents</h3>
+        <ul className="space-y-2 text-sm text-blue-600">
+          {sections.map((section) => (
+            <li key={section.id}>
+              <a href={`#${section.id}`} className="hover:underline">
+                {section.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </aside>
+
+    </div>
+  
+
  {/* Footer */}
       <footer className="bg-gray-50 mt-12 py-10 text-sm text-gray-600">
         <div className="max-w-6xl mx-auto px-4 md:flex justify-between">
@@ -376,33 +279,26 @@ Please read these Terms and this Policy carefully. If you do not agree with any 
 
   <p className="mb-3">
     <strong>Address:</strong><br />
-    Jaffer Town Lahore
+No. 6 NSCDC Olorunda Akobo Ibadan.
   </p>
 
+ 
+
   <p className="mb-3">
-    <strong>WhatsApp Number:</strong><br />
-    54000
-  </p>
+    <strong>Whatsapp:</strong><br />
++2348132574791  </p>
 
   <p className="mb-3">
     <strong>Email:</strong><br />
-    Pakistan
-  </p>
-
-  <p className="mb-3">
-    <strong>Phone:</strong><br />
-    interactivetech@gmail.com
-  </p>
+Masterclasstech00@gmail.com  </p>
 
   <p>
     <strong>Mobile:</strong><br />
-    +92 300 1234567
-  </p>
++2348132574791  </p>
 </div>
 
         </div>
-        <div className="text-center mt-8">© 2025 Inter
-active Tech Solutions. All rights reserved.</div>
+        <div className="text-center mt-8">© 2025 Masterclass Tech. All rights reserved.</div>
       </footer>
     </div></div>
   );

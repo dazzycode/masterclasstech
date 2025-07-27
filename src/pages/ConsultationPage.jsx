@@ -93,11 +93,12 @@ const services = [
 
   <div className="absolute top-0 right-0 w-full sm:w-[70%] h-full flex items-center justify-center text-white text-[10px] sm:text-xs md:text-sm z-10 px-2">
     <div className="flex flex-wrap gap-1 sm:gap-4 items-center justify-center text-center leading-tight">
-      <span>info@masterideasontech.com</span>
+       <span>Masterclasstech00@gmail.com</span>
       <span className="hidden sm:inline">|</span>
-      <span>+02 350 5844901</span>
+      <span>+2348132574791</span>
       <span className="hidden sm:inline">|</span>
-      <span className="whitespace-nowrap hidden xs:inline sm:inline">Johar Town Lahore $4000 Pakistan</span>
+      <span className="whitespace-nowrap hidden xs:inline sm:inline">No. 6 NSCDC Olorunda Akobo Ibadan.
+</span>
     </div>
   </div>
 </div>
@@ -398,7 +399,7 @@ const services = [
           />
           <button
             type="submit"
-            className="bg-blue-900 text-white py-3 px-6 rounded-lg mt-2 
+            className="bg-blue-900 text-white py-2 px-6 rounded-lg mt-2 
 hover:bg-blue-800"
           >
             Book Consultation
@@ -438,18 +439,31 @@ hover:bg-blue-800"
             </div>
           </div>
 
-          <div>
-            <h2 className="font-bold text-xl mb-4">Contact Us</h2>
-            <p className="mb-3"><strong>Address:</strong><br />Jaffer Town Lahore</p>
-            <p className="mb-3"><strong>WhatsApp Number:</strong><br />54000</p>
-            <p className="mb-3"><strong>Email:</strong><br />interactivetech@gmail.com</p>
-            <p className="mb-3"><strong>Phone:</strong><br />Pakistan</p>
-            <p><strong>Mobile:</strong><br />+92 300 1234567</p>
-          </div>
-        </div>
-        <div className="text-center mt-8">
-          © 2025 Interactive Tech Solutions. All rights reserved.
-        </div>
+           <div>
+  <h2 className=" font-bold text-xl mb-4">Contact Us</h2>
+
+  <p className="mb-3">
+    <strong>Address:</strong><br />
+No. 6 NSCDC Olorunda Akobo Ibadan.
+  </p>
+
+ 
+
+  <p className="mb-3">
+    <strong>Whatsapp:</strong><br />
++2348132574791  </p>
+
+  <p className="mb-3">
+    <strong>Email:</strong><br />
+Masterclasstech00@gmail.com  </p>
+
+  <p>
+    <strong>Mobile:</strong><br />
++2348132574791  </p>
+</div>
+
+        </div>
+        <div className="text-center mt-8">© 2025 Masterclass Tech. All rights reserved.</div>
       </footer>
     </div>
   );

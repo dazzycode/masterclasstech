@@ -21,6 +21,7 @@ const LandingPage = () => {
   const [menuOpen, setMenuOpen] = useState(false);
    const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
    const location = useLocation();
+   
 const navLinks = [
   { name: "HOME", path: "/" },
   { name: "ABOUT US", path: "/about" },
@@ -103,32 +104,46 @@ const navLinks = [
 ];
 
 const team = [
-  {
-    name: "Osaka Shore",
-    role: "Frontend Developer",
+   {
+    name: "Peter Abiola",
+    role: " Director",
     img: "/team1.png",
   },
   {
-    name: "Osaka Obas",
+    name: "Idris Ayobami",
+    role: "Mobile Developer",
+    img: "/team2.png",
+  },
+  
+  {
+    name: "Omaka Okoro ",
     role: "Backend Developer",
     img: "/team2.png",
   },
-  {
-    name: "Peter Aloko",
-    role: "Project Manager",
-    img: "/team2.png",
+ 
+   {
+    name: "Abdulazeez",
+    role: " Senior Frontend Developer",
+    img: "/team1.png",
+  },
+   {
+    name: "Zainab Bello",
+    role: " Junior Frontend Developer",
+    img: "/team1.png",
   },
   {
-    name: "SARAH DOE",
-    role: "Media Developer",
+    name: "Emmanuel Ogbe",
+    role: " UI/UX Designer",
     img: "/team3.png",
   },
   {
-    name: "SARAH DOE",
-    role: "UI/UX Designer",
+    name: "Victoria Adeola",
+    role: "Project Manager",
     img: "team2.png",
   },
 ];
+const firstChunk = team.slice(0, 5); // First 5 for xl
+const remainingChunk = team.slice(5); // Remaining for second row
   return (
     <div className="font-sans">
       {/* ========= WRAPPED HEADER START ========= */}
@@ -146,11 +161,12 @@ const team = [
 
   <div className="absolute top-0 right-0 w-full sm:w-[70%] h-full flex items-center justify-center text-white text-[10px] sm:text-xs md:text-sm z-10 px-2">
     <div className="flex flex-wrap gap-1 sm:gap-4 items-center justify-center text-center leading-tight">
-      <span>info@masterideasontech.com</span>
+      <span>Masterclasstech00@gmail.com</span>
       <span className="hidden sm:inline">|</span>
-      <span>+02 350 5844901</span>
+      <span>+2348132574791</span>
       <span className="hidden sm:inline">|</span>
-      <span className="whitespace-nowrap hidden xs:inline sm:inline">Johar Town Lahore $4000 Pakistan</span>
+      <span className="whitespace-nowrap hidden xs:inline sm:inline">No. 6 NSCDC Olorunda Akobo Ibadan.
+</span>
     </div>
   </div>
 </div>
@@ -642,33 +658,69 @@ const team = [
     Our certified experts
   </h2>
 
-<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 max-w-6xl mx-auto px-4">
-    {team.map((person, i) => (
-      <div
-        key={i}
-        className="bg-[#f8f9fb] rounded-lg shadow-md p-4 sm:p-5 w-full max-w-[300px] mx-auto transform transition duration-300 hover:scale-105 hover:shadow-lg"
-      >
-        <img
-          src={person.img}
-          alt={person.name}
-          className="w-full h-[150px] object-cover rounded-md mb-4"
-        />
-        <p className="font-semibold text-sm sm:text-base">{person.name}</p>
-        <p className="text-xs text-gray-500 mb-4">{person.role}</p>
+  <div className="max-w-6xl mx-auto px-4 space-y-8">
+    {/* Top Grid (5 on xl, 4 on lg, responsive) */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+      {firstChunk.map((person, i) => (
+        <div
+          key={i}
+          className="bg-[#f8f9fb] rounded-lg shadow-md p-4 sm:p-5 w-full max-w-[300px] mx-auto transform transition duration-300 hover:scale-105 hover:shadow-lg"
+        >
+          <img
+            src={person.img}
+            alt={person.name}
+            className="w-full h-[150px] object-cover rounded-md mb-4"
+          />
+          <p className="font-semibold text-sm sm:text-base">{person.name}</p>
+          <p className="text-xs text-gray-500 mb-4">{person.role}</p>
 
-        <div className="flex justify-center gap-2">
-          {[FaFacebookF, FaLinkedinIn, FaTwitter].map((Icon, idx) => (
-            <div
-              key={idx}
-              className="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center rounded-full border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition duration-300 cursor-pointer"
-            >
-              <Icon size={10} className="sm:size-3" />
-            </div>
-          ))}
+          <div className="flex justify-center gap-2">
+            {[FaFacebookF, FaLinkedinIn, FaTwitter].map((Icon, idx) => (
+              <div
+                key={idx}
+                className="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center rounded-full border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition duration-300 cursor-pointer"
+              >
+                <Icon size={10} className="sm:size-3" />
+              </div>
+            ))}
+          </div>
         </div>
+      ))}
+    </div>
+
+    {/* Second Row Centered */}
+    {remainingChunk.length > 0 && (
+      <div className="flex flex-wrap justify-center gap-6">
+        {remainingChunk.map((person, i) => (
+          <div
+            key={i}
+            className="bg-[#f8f9fb] rounded-lg shadow-md p-4 sm:p-5 w-full max-w-[300px] transform transition duration-300 hover:scale-105 hover:shadow-lg"
+          >
+            <img
+              src={person.img}
+              alt={person.name}
+              className="w-full h-[150px] object-cover rounded-md mb-4"
+            />
+            <p className="font-semibold text-sm sm:text-base">{person.name}</p>
+            <p className="text-xs text-gray-500 mb-4">{person.role}</p>
+
+            <div className="flex justify-center gap-2">
+              {[FaFacebookF, FaLinkedinIn, FaTwitter].map((Icon, idx) => (
+                <div
+                  key={idx}
+                  className="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center rounded-full border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition duration-300 cursor-pointer"
+                >
+                  <Icon size={10} className="sm:size-3" />
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
-    ))}
+    )}
   </div>
+
+
 </section>
 
 
@@ -726,38 +778,31 @@ const team = [
                 </div>
               </div>
     
-             <div>
-      <h2 className=" font-bold text-xl mb-4">Contact Us</h2>
-    
-      <p className="mb-3">
-        <strong>Address:</strong><br />
-        Jaffer Town Lahore
-      </p>
-    
-      <p className="mb-3">
-        <strong>WhatsApp Number:</strong><br />
-        54000
-      </p>
-    
-      <p className="mb-3">
-        <strong>Email:</strong><br />
-        Pakistan
-      </p>
-    
-      <p className="mb-3">
-        <strong>Phone:</strong><br />
-        interactivetech@gmail.com
-      </p>
-    
-      <p>
-        <strong>Mobile:</strong><br />
-        +92 300 1234567
-      </p>
-    </div>
-    
-            </div>
-            <div className="text-center mt-8">© 2025 Inter
-    active Tech Solutions. All rights reserved.</div>
+            <div>
+  <h2 className=" font-bold text-xl mb-4">Contact Us</h2>
+
+  <p className="mb-3">
+    <strong>Address:</strong><br />
+No. 6 NSCDC Olorunda Akobo Ibadan.
+  </p>
+
+ 
+
+  <p className="mb-3">
+    <strong>Whatsapp:</strong><br />
++2348132574791  </p>
+
+  <p className="mb-3">
+    <strong>Email:</strong><br />
+Masterclasstech00@gmail.com  </p>
+
+  <p>
+    <strong>Mobile:</strong><br />
++2348132574791  </p>
+</div>
+
+        </div>
+        <div className="text-center mt-8">© 2025 Masterclass Tech. All rights reserved.</div>
           </footer>
     </div>
  
