@@ -42,7 +42,7 @@ Upon termination, all rights granted to you under these Terms will immediately c
      { id: "thirdparty", title: "9. Third-Party Links", content: `Our Services may contain links to third-party websites or services that are not owned or controlled by us. We are not responsible for the content, policies, or practices of these third parties. You access these websites at your own risk.` },
     { id: "disclaimer", title: "10.Disclaimers", content: `The Services are provided "as is" and "as available" without warranties of any kind, either express or implied. We do not guarantee that the Services will be uninterrupted, error-free, secure, or free of viruses or other harmful components.
 To the fullest extent permitted by law, we disclaim all warranties, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement.` },
- { id: "use", title: "3. Use of Services", content: 'You agree to use the Services only for lawful purposes and in a way that does not infringe the rights of others or restrict or inhibit their use and enjoyment. You must not:'(
+ { id: "use", title: "3. Use of Services", content: (
     
       <ul className="list-disc list-inside space-y-1">
         <li>Violate any applicable laws or regulations.</li>
