@@ -19,20 +19,31 @@ const navLinks = [
 ];
 const sections = [
     { id: "introduction", title: "1. Introduction", content: `Welcome to [Your Company Name] (“we”, “our”, or “us”). By using our websites, services, mobile applications, or any associated digital platform (collectively, the “Services”), you agree to be bound by the following Terms of Service and our Privacy Policy.` },
-    { id: "eligibility", title: "2. Eligibility", content: `You must be at least 18 years old or of age of majority in your jurisdiction.` },
-    { id: "use", title: "3. Use of Services", content: (
+    { id: "eligibility", title: "2. Eligibility", content: `By using our Services, you affirm that you are at least 18 years old or the age of majority in your jurisdiction. If you are using our Services on behalf of an organization or entity, you represent and warrant that you have the authority to bind that entity to these Terms.` },
+    { id: "use", title: "3. Use of Services", content: 'You agree to use the Services only for lawful purposes and in a way that does not infringe the rights of others or restrict or inhibit their use and enjoyment. You must not:'(
+    
       <ul className="list-disc list-inside space-y-1">
-        <li>Only use our services for lawful purposes.</li>
-        <li>Do not infringe intellectual property rights.</li>
-        <li>Do not upload viruses or harmful software.</li>
+        <li>Violate any applicable laws or regulations.</li>
+        <li>Infringe upon the intellectual property rights of others.</li>
+        <li>Transmit any viruses, malware, or other harmful software.</li>
+                <li>Attempt to gain unauthorized access to any part of the Services or related systems.</li>
+
       </ul>
     )},
-    { id: "account", title: "4. Account Registration", content: `You are responsible for keeping your login credentials secure. You agree to update your information promptly if it changes.` },
-    { id: "ip", title: "5. Intellectual Property Rights", content: `All content on the Services—including text, graphics, logos, icons, and software—is the property of [Your Company Name]. You may not reproduce or distribute it without our permission.` },
-    { id: "content", title: "6. User Content", content: `By submitting content, you grant us a non-exclusive, royalty-free license to use, reproduce, and distribute your content.` },
-    { id: "payments", title: "7. Payments and Subscriptions", content: `You agree to pay all applicable fees and are responsible for charges unless canceled on time.` },
-    { id: "termination", title: "8. Termination", content: `We reserve the right to suspend or terminate access for violating these terms. Upon termination, all rights granted to you cease immediately.` },
-  ];
+    { id: "account", title: "4. Account Registration", content: `Some Services may require you to create an account. You are responsible for maintaining the confidentiality of your login credentials and for all activities that occur under your account. You agree to provide accurate, complete, and up-to-date information during registration and to promptly update this information if it changes.` },
+    { id: "ip", title: "5. Intellectual Property Rights", content: `All content, features, and functionality on our Services—including but not limited to text, graphics, logos, icons, images, audio, video, software, and code—are the property of [Your Company Name] or our licensors and are protected by intellectual property laws.
+You may not copy, modify, distribute, sell, or lease any part of our Services or content without our prior written consent.` },
+    { id: "content", title: "6. User Content", content: `If you submit, upload, or otherwise provide content through our Services ("User Content"), you grant us a worldwide, non-exclusive, royalty-free, transferable license to use, reproduce, distribute, prepare derivative works of, display, and perform that content in connection with the operation of the Services.
+You are solely responsible for your User Content and affirm that it does not violate any third-party rights or laws.` },
+    { id: "payments", title: "7. Payments and Subscriptions", content: `If you purchase any of our paid Services or subscriptions, you agree to pay all fees associated with the Services. All payments are non-refundable unless stated otherwise.
+We may change our pricing or billing methods at any time with reasonable prior notice. You are responsible for canceling any subscription before the next billing cycle if you do not wish to be charged.` },
+    { id: "termination", title: "8. Termination", content: `We reserve the right to suspend or terminate your access to the Services at any time, without notice, if we believe you have violated these Terms, engaged in fraudulent or illegal activity, or created risk or possible legal exposure for us.
+Upon termination, all rights granted to you under these Terms will immediately cease.` },
+     { id: "thirdparty", title: "9. Third-Party Links", content: `Our Services may contain links to third-party websites or services that are not owned or controlled by us. We are not responsible for the content, policies, or practices of these third parties. You access these websites at your own risk.` },
+    { id: "disclaimer", title: "10.Disclaimers", content: `The Services are provided "as is" and "as available" without warranties of any kind, either express or implied. We do not guarantee that the Services will be uninterrupted, error-free, secure, or free of viruses or other harmful components.
+To the fullest extent permitted by law, we disclaim all warranties, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement.` },
+
+];
 
   return (
     <div className="min-h-screen bg-white text-gray-800">

@@ -21,42 +21,46 @@ const LandingPage = () => {
   const [menuOpen, setMenuOpen] = useState(false);
    const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
    const location = useLocation();
-   
+     const [activeIndex, setActiveIndex] = useState(0);
+
 const navLinks = [
   { name: "HOME", path: "/" },
   { name: "ABOUT US", path: "/about" },
   { name: "TERMS AND PRIVACY", path: "/privacy" },
   { name: "BLOG", path: "#" },
 ];
+const services = [
+  {
+    title: "Web Development",
+    desc: "We build amazing websites",
+    icon: "/saas1.png",
+    topImage: "/phone2.png", 
+  },
+  {
+    title: "Mobile Apps",
+    desc: "Cross-platform mobile apps",
+    icon: "/saas.png",
+    topImage: "/overlay.png",
+  },
 
-
- const services = [
-    {
-      title: "WEB BASED APPS",
-      desc: "Transforming ideas into intuitive SaaS apps with impactful digital solutions.",
-      icon: "/saas1.png",
-    },
-    {
-      title: "MOBILE APPS",
-      desc: "High-performance mobile apps with Laravel, JS, Python, React Native, and more.",
-      icon: "/saas.png",
-    },
-    {
-      title: "UI/UX DESIGN",
-      desc: "Top-tier UI/UX design, offering stylish, user-friendly experiences.",
-      icon: "/ui.png",
-    },
      {
       title: "MOBILE APPS",
       desc: "High-performance mobile apps with Laravel, JS, Python, React Native, and more.",
       icon: "/saas.png",
+          topImage: "/phone2.png",
+
     },
     {
       title: "UI/UX DESIGN",
       desc: "Top-tier UI/UX design, offering stylish, user-friendly experiences.",
       icon: "/ui.png",
-    },
-  ];
+          topImage: "/phone.png",
+
+    },];
+
+
+ 
+
 
  const testimonials = [
   {
@@ -142,8 +146,8 @@ const team = [
     img: "team2.png",
   },
 ];
-const firstChunk = team.slice(0, 5); // First 5 for xl
-const remainingChunk = team.slice(5); // Remaining for second row
+ const firstRow = team.slice(0, 5); // First 5 cards
+  const secondRow = team.slice(5);   // Remaining cards (2)
   return (
     <div className="font-sans">
       {/* ========= WRAPPED HEADER START ========= */}
@@ -391,85 +395,80 @@ const remainingChunk = team.slice(5); // Remaining for second row
         </h2>
       </section>
 
-      {/* Phone Image */}
+   
+
+    <>
+      {/* Top Image - Dynamically Changes */}
       <div className="flex justify-center mb-10">
         <img
-          src="/phone.png"
+          src={services[activeIndex]?.topImage || "/fallback.png"}
           alt="Phone"
-          className="w-[90%] md:w-[1000px] h-96  rounded-xl"
+          className="w-[90%] md:w-[1000px] h-96 rounded-xl object-cover"
         />
       </div>
 
-      {/* Services Carousel */}
-    
-<section className="mb-16 px-4 sm:px-6 relative">
-  <div className="max-w-6xl mx-auto relative">
-    {/* Custom Arrows - hidden on mobile */}
-    <button className="swiper-button-prev hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 bg-white rounded-full shadow-md text-blue-700 hover:bg-blue-100 transition">
-      <FaArrowLeft />
-    </button>
-    <button className="swiper-button-next hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 bg-white rounded-full shadow-md text-blue-700 hover:bg-blue-100 transition">
-      <FaArrowRight />
-    </button>
+      {/* Swiper Section */}
+      <section className="mb-16 px-4 sm:px-6 relative">
+        <div className="max-w-6xl mx-auto">
+          <Swiper
+            modules={[Autoplay, Pagination]}
+            autoplay={{ delay: 3000 }}
+            pagination={{ clickable: true }}
+            onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+            spaceBetween={16}
+            slidesPerView={1}
+            centeredSlides
+            loop
+            breakpoints={{
+              640: {
+                slidesPerView: 1.2,
+              },
+              768: {
+                slidesPerView: 2,
+              },
+              1024: {
+                slidesPerView: 3,
+              },
+            }}
+            className="group"
+          >
+            {services.map((item, i) => (
+              <SwiperSlide key={i}>
+                {({ isActive }) => (
+                  <div className="relative px-2 sm:px-0 transition-all duration-500">
+                    <div
+                      className={`bg-white shadow-md rounded-xl px-5 py-6 sm:px-6 sm:py-8 text-center transition-all duration-500 ${
+                        isActive ? 'scale-100 sm:scale-105' : 'scale-95'
+                      }`}
+                    >
+                      <img
+                        src={item.icon}
+                        alt="icon"
+                        className="mx-auto mb-3 w-14 h-14 sm:w-16 sm:h-16 object-contain"
+                      />
+                      <h3 className="font-semibold text-base sm:text-lg text-[#001359] mb-2">
+                        {item.title}
+                      </h3>
+                      <p className="text-gray-600 text-sm sm:text-base">
+                        {item.desc}
+                      </p>
+                    </div>
 
-    {/* Swiper Component */}
-    <Swiper
-      modules={[Navigation]}
-      navigation={{
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      }}
-      spaceBetween={16}
-      slidesPerView={1}
-      centeredSlides
-      loop
-      breakpoints={{
-        640: {
-          slidesPerView: 1.2,
-          centeredSlides: true,
-        },
-        768: {
-          slidesPerView: 2,
-        },
-        1024: {
-          slidesPerView: 3,
-        },
-      }}
-      className="group"
-    >
-      {services.map((item, i) => (
-        <SwiperSlide key={i}>
-          {({ isActive }) => (
-            <div className="relative px-2 sm:px-0 transition-all duration-500">
-              <div
-                className={`bg-white shadow-md rounded-xl px-5 py-6 sm:px-6 sm:py-8 text-center transition-all duration-500 ${
-                  isActive ? "scale-100 sm:scale-105" : "scale-95"
-                }`}
-              >
-                <img
-                  src={item.icon}
-                  alt="icon"
-                  className="mx-auto mb-3 w-14 h-14 sm:w-16 sm:h-16 object-contain"
-                />
-                <h3 className="font-semibold text-base sm:text-lg text-[#001359] mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-gray-600 text-sm sm:text-base">{item.desc}</p>
-              </div>
+                    {isActive && (
+                      <div className="absolute inset-0 rounded-xl bg-black/40 z-10 animate-gradientFade pointer-events-none">
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 opacity-30 blur-lg animate-pulse" />
+                      </div>
+                    )}
+                  </div>
+                )}
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </section>
+    </>
+ 
 
-              {/* Active Overlay */}
-              {isActive && (
-                <div className="absolute inset-0 rounded-xl bg-black/40 z-10 animate-gradientFade pointer-events-none">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 opacity-30 blur-lg animate-pulse" />
-                </div>
-              )}
-            </div>
-          )}
-        </SwiperSlide>
-      ))}
-    </Swiper>
-  </div>
-</section>
 
       {/* Stats */}
    <section className="bg-[#f3f7f9] py-12 px-6">
@@ -650,78 +649,80 @@ const remainingChunk = team.slice(5); // Remaining for second row
  
 
       {/* Team Section */}
- <section className="py-12 px-4 sm:px-6 text-center bg-white">
-  <h4 className="text-xs sm:text-sm text-blue-500 font-semibold mb-2 tracking-wide">
-    TEAM
-  </h4>
-  <h2 className="text-xl sm:text-2xl font-bold mb-10 sm:mb-12">
-    Our certified experts
-  </h2>
+ 
+ 
 
-  <div className="max-w-6xl mx-auto px-4 space-y-8">
-    {/* Top Grid (5 on xl, 4 on lg, responsive) */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-      {firstChunk.map((person, i) => (
-        <div
-          key={i}
-          className="bg-[#f8f9fb] rounded-lg shadow-md p-4 sm:p-5 w-full max-w-[300px] mx-auto transform transition duration-300 hover:scale-105 hover:shadow-lg"
-        >
-          <img
-            src={person.img}
-            alt={person.name}
-            className="w-full h-[150px] object-cover rounded-md mb-4"
-          />
-          <p className="font-semibold text-sm sm:text-base">{person.name}</p>
-          <p className="text-xs text-gray-500 mb-4">{person.role}</p>
+    <section className="py-12 px-4 sm:px-6 text-center bg-white">
+      <h4 className="text-xs sm:text-sm text-blue-500 font-semibold mb-2 tracking-wide">
+        TEAM
+      </h4>
+      <h2 className="text-xl sm:text-2xl font-bold mb-10 sm:mb-12">
+        Our certified experts
+      </h2>
 
-          <div className="flex justify-center gap-2">
-            {[FaFacebookF, FaLinkedinIn, FaTwitter].map((Icon, idx) => (
+      <div className="max-w-7xl mx-auto space-y-10">
+        {/* First Row - Responsive Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+          {firstRow.map((person, i) => (
+            <div
+              key={i}
+              className="bg-[#f8f9fb] rounded-lg shadow-md p-4 sm:p-5 w-full max-w-[300px] mx-auto transform transition duration-300 hover:scale-105 hover:shadow-lg"
+            >
+              <img
+                src={person.img}
+                alt={person.name}
+                className="w-full h-[150px] object-cover rounded-md mb-4"
+              />
+              <p className="font-semibold text-sm sm:text-base">{person.name}</p>
+              <p className="text-xs text-gray-500 mb-4">{person.role}</p>
+
+              <div className="flex justify-center gap-2">
+                {[FaFacebookF, FaLinkedinIn, FaTwitter].map((Icon, idx) => (
+                  <div
+                    key={idx}
+                    className="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center rounded-full border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition duration-300 cursor-pointer"
+                  >
+                    <Icon size={10} className="sm:size-3" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Second Row - Centered Cards */}
+        {secondRow.length > 0 && (
+          <div className="flex flex-wrap justify-center gap-6">
+            {secondRow.map((person, i) => (
               <div
-                key={idx}
-                className="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center rounded-full border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition duration-300 cursor-pointer"
+                key={i}
+                className="bg-[#f8f9fb] rounded-lg shadow-md p-4 sm:p-5 w-full max-w-[300px] transform transition duration-300 hover:scale-105 hover:shadow-lg"
               >
-                <Icon size={10} className="sm:size-3" />
+                <img
+                  src={person.img}
+                  alt={person.name}
+                  className="w-full h-[150px] object-cover rounded-md mb-4"
+                />
+                <p className="font-semibold text-sm sm:text-base">{person.name}</p>
+                <p className="text-xs text-gray-500 mb-4">{person.role}</p>
+
+                <div className="flex justify-center gap-2">
+                  {[FaFacebookF, FaLinkedinIn, FaTwitter].map((Icon, idx) => (
+                    <div
+                      key={idx}
+                      className="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center rounded-full border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition duration-300 cursor-pointer"
+                    >
+                      <Icon size={10} className="sm:size-3" />
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
-        </div>
-      ))}
-    </div>
-
-    {/* Second Row Centered */}
-    {remainingChunk.length > 0 && (
-      <div className="flex flex-wrap justify-center gap-6">
-        {remainingChunk.map((person, i) => (
-          <div
-            key={i}
-            className="bg-[#f8f9fb] rounded-lg shadow-md p-4 sm:p-5 w-full max-w-[300px] transform transition duration-300 hover:scale-105 hover:shadow-lg"
-          >
-            <img
-              src={person.img}
-              alt={person.name}
-              className="w-full h-[150px] object-cover rounded-md mb-4"
-            />
-            <p className="font-semibold text-sm sm:text-base">{person.name}</p>
-            <p className="text-xs text-gray-500 mb-4">{person.role}</p>
-
-            <div className="flex justify-center gap-2">
-              {[FaFacebookF, FaLinkedinIn, FaTwitter].map((Icon, idx) => (
-                <div
-                  key={idx}
-                  className="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center rounded-full border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition duration-300 cursor-pointer"
-                >
-                  <Icon size={10} className="sm:size-3" />
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
+        )}
       </div>
-    )}
-  </div>
-
-
-</section>
+    </section>
+  
 
 
       {/* CTA Section */}
