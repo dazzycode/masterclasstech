@@ -387,30 +387,26 @@ const team = [
       {/* Swiper Section */}
       <section className="mb-16 px-4 sm:px-6 relative">
         <div className="max-w-6xl mx-auto">
-         <Swiper
-  modules={[Autoplay, Pagination]}
-  autoplay={{ delay: 3000, disableOnInteraction: false }}
-  pagination={{ clickable: true }}
-  spaceBetween={16}
-  slidesPerView={1}
-  centeredSlides
-  loop={true}
-  loopedSlides={services.length} // Optional but good for dynamic lists
-  breakpoints={{
-    640: {
-      slidesPerView: 1.2,
-    },
-    768: {
-      slidesPerView: 2,
-    },
-    1024: {
-      slidesPerView: 3,
-    },
+        <Swiper
+  modules={[Autoplay]}
+  autoplay={{
+    delay: 0, // No delay between slides
+    disableOnInteraction: false,
   }}
+  speed={20000} // Smooth scroll speed (20s per full loop)
+  loop={true}
+  loopedSlides={services.length}
+  grabCursor={true}
+  slidesPerView="auto"
+  centeredSlides={true}
+  allowTouchMove={false} // Optional: Disable user drag for true "ticker" effect
   className="group"
 >
   {services.map((item, i) => (
-    <SwiperSlide key={i}>
+    <SwiperSlide
+      key={i}
+      className="!w-[300px]" // Adjust width of each slide
+    >
       <div className="relative px-2 sm:px-0 transition-all duration-500">
         <div className="bg-white shadow-md rounded-xl px-5 py-6 sm:px-6 sm:py-8 text-center">
           <img
