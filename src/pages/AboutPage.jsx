@@ -178,10 +178,10 @@ const navLinks = [
       Welcome to Interactive Tech Solutions
     </h1>
     <p className="text-gray-600 mb-6">
-      At Interactive Tech Solutions, we understand software development is not a transformation; it's an evolution. We combine experience, creativity, and expertise to create solutions that adapt to your unique challenges and goals. Our commitment is to craft high-performing solutions that are impactful and forward-thinking.
+      At Master class Tech, we understand software development is not a transformation; it's an evolution. We combine experience, creativity, and expertise to create solutions that adapt to your unique challenges and goals. Our commitment is to craft high-performing solutions that are impactful and forward-thinking.
     </p>
     <p className="text-gray-600 mb-8">
-      Thank you for considering Interactive Tech Solutions as we make this journey together.
+      Thank you for considering Master class Tech as we make this journey together.
     </p>
         <p className="text-gray-800 font-medium mb-2">Sincerely,</p>
 
@@ -242,7 +242,7 @@ const navLinks = [
 <div className="mb-2">
   <img src="/MT-logo.png" alt="IMT Logo" className="w-24 h-auto" />
 </div>
-            <p className="max-w-sm mb-3">At Interactive Tech Solutions, we are just getting started with solutions, where we explore ideas and implement with simplicity and scalability in mind.</p>
+            <p className="max-w-sm mb-3">AtMaster class Tech, we are just getting started with solutions, where we explore ideas and implement with simplicity and scalability in mind.</p>
             <div className="flex gap-1">
            
   <div className="flex gap-4">
