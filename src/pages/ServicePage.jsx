@@ -27,28 +27,7 @@ export default function ServicePage() {
 
       {/* Top Nav */}
     <header className="bg-white w-full">
-      {/* Top Bar with Slant */}
-       <div className="relative w-full h-[44px] sm:h-[52px]">
-  <svg
-    viewBox="0 0 1411 78"
-    preserveAspectRatio="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="absolute right-0 top-0 w-full sm:w-[70%] h-full"
-  >
-    <path d="M0 0H1411V78H46L0 0Z" fill="#001359" />
-  </svg>
-
-  <div className="absolute top-0 right-0 w-full sm:w-[70%] h-full flex items-center justify-center text-white text-[10px] sm:text-xs md:text-sm z-10 px-2">
-    <div className="flex flex-wrap gap-1 sm:gap-4 items-center justify-center text-center leading-tight">
-      <span>Masterclasstech00@gmail.com</span>
-      <span className="hidden sm:inline">|</span>
-      <span>+2348132574791</span>
-      <span className="hidden sm:inline">|</span>
-      <span className="whitespace-nowrap hidden xs:inline sm:inline">No. 6 NSCDC Olorunda Akobo Ibadan.
-</span>
-    </div>
-  </div>
-</div>
+     
 
       {/* Navbar & Logo */}
       <div className="flex items-center justify-between px-6 py-2 sm:py-3 relative z-20">

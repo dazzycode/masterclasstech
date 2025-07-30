@@ -153,27 +153,7 @@ const team = [
       {/* ========= WRAPPED HEADER START ========= */}
      <header className="bg-white w-full">
           {/* Top Bar with Slant */}
-        <div className="relative w-full h-[44px] sm:h-[52px]">
-  <svg
-    viewBox="0 0 1411 78"
-    preserveAspectRatio="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="absolute right-0 top-0 w-full sm:w-[70%] h-full"
-  >
-    <path d="M0 0H1411V78H46L0 0Z" fill="#001359" />
-  </svg>
-
-  <div className="absolute top-0 right-0 w-full sm:w-[70%] h-full flex items-center justify-center text-white text-[10px] sm:text-xs md:text-sm z-10 px-2">
-    <div className="flex flex-wrap gap-1 sm:gap-4 items-center justify-center text-center leading-tight">
-      <span>Masterclasstech00@gmail.com</span>
-      <span className="hidden sm:inline">|</span>
-      <span>+2348132574791</span>
-      <span className="hidden sm:inline">|</span>
-      <span className="whitespace-nowrap hidden xs:inline sm:inline">No. 6 NSCDC Olorunda Akobo Ibadan.
-</span>
-    </div>
-  </div>
-</div>
+      
 
     
           {/* Navbar & Logo */}
@@ -356,37 +336,34 @@ const team = [
       <section className="bg-white text-center py-12 px-6">
         <h2 className="text-xl font-semibold text-gray-800 mb-2">Our Clients</h2>
         <p className="text-gray-500 text-sm mb-8">We have been working with some Fortune 500+ clients</p>
-       <div className="overflow-hidden w-full">
-  <motion.div
-    className="flex gap-12 w-max"
-    animate={{ x: ["0%", "-50%"] }}
-    transition={{
-      repeat: Infinity,
-      repeatType: "loop",
-      duration: 15,
-      ease: "linear",
-    }}
-  >
-    {/* Duplicate logos manually for seamless loop */}
-    {/* First Set */}
-    <img src="/Logo.png" alt="Logo 1" className="h-10" />
-    <img src="/Logo1.png" alt="Logo 2" className="h-10" />
-    <img src="/Logo2.png" alt="Logo 3" className="h-10" />
-    <img src="/Logo3.png" alt="Logo 4" className="h-10" />
-    <img src="/Logo4.png" alt="Logo 5" className="h-10" />
-    <img src="/Logo.png" alt="Logo 6" className="h-10" />
-    <img src="/Logo.png" alt="Logo 7" className="h-10" />
+     
+    <div className="w-full overflow-hidden bg-black py-6">
+      <motion.div
+        className="flex gap-12 w-max"
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{
+          repeat: Infinity,
+          repeatType: "loop",
+          duration: 20,
+          ease: "linear",
+        }}
+      >
+        {/* Duplicated Logos for seamless loop */}
+        {[...Array(2)].flatMap(() => (
+          <>
+            <img src="/Logo.png" alt="Logo 1" className="h-10" />
+            <img src="/Logo1.png" alt="Logo 2" className="h-10" />
+            <img src="/Logo2.png" alt="Logo 3" className="h-10" />
+            <img src="/Logo3.png" alt="Logo 4" className="h-10" />
+            <img src="/Logo4.png" alt="Logo 5" className="h-10" />
+            <img src="/Logo.png" alt="Logo 6" className="h-10" />
+            <img src="/Logo1.png" alt="Logo 7" className="h-10" />
+          </>
+        ))}
+      </motion.div>
+    </div>
+ 
 
-    {/* Second Set - to make loop seamless */}
-     <img src="/Logo1.png" alt="Logo 1" className="h-10" />
-    <img src="/Logo2.png" alt="Logo 2" className="h-10" />
-    <img src="/Logo.png" alt="Logo 3" className="h-10" />
-    <img src="/Logo3.png" alt="Logo 4" className="h-10" />
-    <img src="/Logo4.png" alt="Logo 5" className="h-10" />
-    <img src="/Logo2.png" alt="Logo 6" className="h-10" />
-    <img src="/Logo.png" alt="Logo 7" className="h-10" />
-  </motion.div>
-</div>
 
       </section>
       <section className="text-center py-12 px-4">
@@ -410,60 +387,47 @@ const team = [
       {/* Swiper Section */}
       <section className="mb-16 px-4 sm:px-6 relative">
         <div className="max-w-6xl mx-auto">
-          <Swiper
-            modules={[Autoplay, Pagination]}
-            autoplay={{ delay: 3000 }}
-            pagination={{ clickable: true }}
-            onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-            spaceBetween={16}
-            slidesPerView={1}
-            centeredSlides
-            loop
-            breakpoints={{
-              640: {
-                slidesPerView: 1.2,
-              },
-              768: {
-                slidesPerView: 2,
-              },
-              1024: {
-                slidesPerView: 3,
-              },
-            }}
-            className="group"
-          >
-            {services.map((item, i) => (
-              <SwiperSlide key={i}>
-                {({ isActive }) => (
-                  <div className="relative px-2 sm:px-0 transition-all duration-500">
-                    <div
-                      className={`bg-white shadow-md rounded-xl px-5 py-6 sm:px-6 sm:py-8 text-center transition-all duration-500 ${
-                        isActive ? 'scale-100 sm:scale-105' : 'scale-95'
-                      }`}
-                    >
-                      <img
-                        src={item.icon}
-                        alt="icon"
-                        className="mx-auto mb-3 w-14 h-14 sm:w-16 sm:h-16 object-contain"
-                      />
-                      <h3 className="font-semibold text-base sm:text-lg text-[#001359] mb-2">
-                        {item.title}
-                      </h3>
-                      <p className="text-gray-600 text-sm sm:text-base">
-                        {item.desc}
-                      </p>
-                    </div>
+         <Swiper
+  modules={[Autoplay, Pagination]}
+  autoplay={{ delay: 3000, disableOnInteraction: false }}
+  pagination={{ clickable: true }}
+  spaceBetween={16}
+  slidesPerView={1}
+  centeredSlides
+  loop={true}
+  loopedSlides={services.length} // Optional but good for dynamic lists
+  breakpoints={{
+    640: {
+      slidesPerView: 1.2,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    1024: {
+      slidesPerView: 3,
+    },
+  }}
+  className="group"
+>
+  {services.map((item, i) => (
+    <SwiperSlide key={i}>
+      <div className="relative px-2 sm:px-0 transition-all duration-500">
+        <div className="bg-white shadow-md rounded-xl px-5 py-6 sm:px-6 sm:py-8 text-center">
+          <img
+            src={item.icon}
+            alt="icon"
+            className="mx-auto mb-3 w-14 h-14 sm:w-16 sm:h-16 object-contain"
+          />
+          <h3 className="font-semibold text-base sm:text-lg text-[#001359] mb-2">
+            {item.title}
+          </h3>
+          <p className="text-gray-600 text-sm sm:text-base">{item.desc}</p>
+        </div>
+      </div>
+    </SwiperSlide>
+  ))}
+</Swiper>
 
-                    {isActive && (
-                      <div className="absolute inset-0 rounded-xl bg-black/40 z-10 animate-gradientFade pointer-events-none">
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 opacity-30 blur-lg animate-pulse" />
-                      </div>
-                    )}
-                  </div>
-                )}
-              </SwiperSlide>
-            ))}
-          </Swiper>
         </div>
       </section>
     </>
@@ -557,11 +521,7 @@ const team = [
           ))}
         </div>
         <div className="flex items-center justify-center gap-3 mt-4">
-          <img
-            src={person.image}
-            alt={person.name}
-            className="w-12 h-12 rounded-full object-cover"
-          />
+         
           <div className="text-left">
             <p className="font-bold text-sm">{person.name}</p>
             <p className="text-xs text-gray-500">{person.role}</p>
