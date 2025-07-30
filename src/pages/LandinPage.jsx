@@ -337,7 +337,7 @@ const team = [
         <h2 className="text-xl font-semibold text-gray-800 mb-2">Our Clients</h2>
         <p className="text-gray-500 text-sm mb-8">We have been working with some Fortune 500+ clients</p>
      
-    <div className="w-full overflow-hidden bg-black py-6">
+    <div className="w-full overflow-hidden py-6">
       <motion.div
         className="flex gap-12 w-max"
         animate={{ x: ["0%", "-50%"] }}
