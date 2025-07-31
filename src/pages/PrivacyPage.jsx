@@ -15,7 +15,6 @@ const navLinks = [
   { name: "HOME", path: "/" },
   { name: "ABOUT US", path: "/about" },
   { name: "TERMS AND PRIVACY", path: "/privacy" },
-  { name: "BLOG", path: "#" },
 ];
 const sections = [
     { id: "introduction", title: "1. Introduction", content: `Welcome to [Your Company Name] (“we”, “our”, or “us”). By using our websites, services, mobile applications, or any associated digital platform (collectively, the “Services”), you agree to be bound by the following Terms of Service and our Privacy Policy.` },

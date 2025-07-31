@@ -27,7 +27,6 @@ const navLinks = [
   { name: "HOME", path: "/" },
   { name: "ABOUT US", path: "/about" },
   { name: "TERMS AND PRIVACY", path: "/privacy" },
-  { name: "BLOG", path: "#" },
 ];
 const services = [
   {
@@ -43,13 +42,7 @@ const services = [
     topImage: "/overlay.png",
   },
 
-     {
-      title: "MOBILE APPS",
-      desc: "High-performance mobile apps with Laravel, JS, Python, React Native, and more.",
-      icon: "/saas.png",
-          topImage: "/phone2.png",
-
-    },
+   
     {
       title: "UI/UX DESIGN",
       desc: "Top-tier UI/UX design, offering stylish, user-friendly experiences.",
@@ -305,15 +298,13 @@ const team = [
   {/* Content */}
   <div className="relative z-10 max-w-6xl mx-auto py-20 px-6 text-center">
     <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-6">
-      PERSONALIZED <br />
-      <span className="stroke-text">SAAS SOLUTIONS</span> <br />
-      TO STREAMLINE YOUR BUSINESS OPERATIONS.
+     BUILD BOLD. 
+      <span className="stroke-text">LAUNCH SMART.</span> 
+      SCALE FAST
     </h1>
 
     <p className="text-gray-200 max-w-2xl mx-auto mb-8 text-sm md:text-base">
-      We would convert your conventional business into Digital and automated business
-      by using latest cutting edge tech stacks, an end-to-end web based apps development
-      life cycle to meet business' needs.
+      We design and develop world-class mobile apps, websites, and digital solutions that drive growth and innovation for businesses across the globe.
     </p>
 
     <div className="flex gap-4 justify-center">
@@ -385,51 +376,30 @@ const team = [
       </div>
 
       {/* Swiper Section */}
-      <section className="mb-16 px-4 sm:px-6 relative">
-        <div className="max-w-6xl mx-auto">
-         <Swiper
-  modules={[Autoplay, Pagination]}
-  autoplay={{ delay: 3000, disableOnInteraction: false }}
-  pagination={{ clickable: true }}
-  spaceBetween={16}
-  slidesPerView={1}
-  centeredSlides
-  loop={true}
-  loopedSlides={services.length} 
-  breakpoints={{
-    640: {
-      slidesPerView: 1.2,
-    },
-    768: {
-      slidesPerView: 2,
-    },
-    1024: {
-      slidesPerView: 3,
-    },
-  }}
-  className="group"
->
-  {services.map((item, i) => (
-    <SwiperSlide key={i}>
-      <div className="relative px-2 sm:px-0 transition-all duration-500">
-        <div className="bg-white shadow-md rounded-xl px-5 py-6 sm:px-6 sm:py-8 text-center">
-          <img
-            src={item.icon}
-            alt="icon"
-            className="mx-auto mb-3 w-14 h-14 sm:w-16 sm:h-16 object-contain"
-          />
-          <h3 className="font-semibold text-base sm:text-lg text-[#001359] mb-2">
-            {item.title}
-          </h3>
-          <p className="text-gray-600 text-sm sm:text-base">{item.desc}</p>
+ <section className="mb-16 sm:px-6 flex justify-center items-center text-center">
+  <div className="max-w-6xl w-full mx-auto">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-center">
+      {services.map((item, i) => (
+        <div key={i} className="transition-all duration-500 h-full">
+          <div className="bg-white shadow-md rounded-xl px-5 py-6 sm:px-6 sm:py-8 text-center h-full flex flex-col items-center">
+            <img
+              src={item.icon}
+              alt="icon"
+              className="mx-auto mb-3 w-14 h-14 sm:w-16 sm:h-16 object-contain"
+            />
+            <h3 className="font-semibold text-base sm:text-lg text-[#001359] mb-2">
+              {item.title}
+            </h3>
+            <p className="text-gray-600 text-sm sm:text-base mt-auto text-center">
+              {item.desc}
+            </p>
+          </div>
         </div>
-      </div>
-    </SwiperSlide>
-  ))}
-</Swiper>
+      ))}
+    </div>
+  </div>
+</section>
 
-        </div>
-      </section>
     </>
  
 
@@ -440,7 +410,7 @@ const team = [
     {/* Left Column - Text */}
     <div className="max-w-2xl">
       <h3 className="text-3xl md:text-3xl font-semibold mb-3 ">
-        Helping <span className=" text-3xl font-semibold text-green-600">businesses and Organisations reach their goals.</span> 
+        Helping <span className=" text-3xl font-semibold text-blue-900">businesses and Organisations reach their goals.</span> 
       </h3>
       <p className="text-gray-500 text-sm">
         We reached here with our hard work and dedication
@@ -448,7 +418,7 @@ const team = [
     </div>
 
     {/* Right Column - Stats */}
-   <div className="grid grid-cols-2 gap-8 text-green-700 text-sm">
+   <div className="grid grid-cols-2 gap-8 text-blue-900 text-sm">
   <div className="flex items-center gap-3">
     <FaUsers size={24} />
     <div>
@@ -538,7 +508,8 @@ const team = [
       {/* cardfloaat Section */}
   
   
-    <section className="bg-[#f3f7fb] py-20 px-4">
+ 
+   <section className="bg-[#f3f7fb] py-20 px-4">
   {/* Section heading */}
   <div className="text-center mb-12">
     <h2 className="text-2xl md:text-3xl font-bold leading-snug">
@@ -548,8 +519,8 @@ const team = [
   </div>
 
   {/* Content */}
-  <div className="relative max-w-6xl mx-auto flex justify-center">
-    {/* Image and floating checklist card */}
+  <div className="relative max-w-6xl mx-auto flex flex-col md:flex-row items-center md:items-start justify-center">
+    {/* Image + checklist */}
     <div className="relative">
       <img
         src="/overlay.png"
@@ -557,30 +528,30 @@ const team = [
         className="w-[750px] max-w-full rounded-xl shadow-lg"
       />
 
-      {/* Checklist card - show only on md+ */}
-      <div className="hidden md:block absolute top-1/2 left-[80%] -translate-y-1/2 w-72 bg-white p-6 rounded-xl shadow-lg z-10">
+      {/* Floating Checklist Card */}
+      <div className="md:absolute md:top-1/2 md:left-[80%] md:-translate-y-1/2 w-full md:w-72 mt-6 md:mt-0 bg-white p-6 rounded-xl shadow-lg z-10">
         <ul className="space-y-3 text-sm text-gray-800">
           <li className="flex items-start gap-2">
-            <FaCheck className="text-green-600 mt-1" />
+            <FaCheck className="text-blue-900 mt-1" />
             Share Your Idea
           </li>
           <li className="flex items-start gap-2">
-            <FaCheck className="text-green-600 mt-1" />
+            <FaCheck className="text-blue-900 mt-1" />
             Design Phase
           </li>
           <li className="flex items-start gap-2">
-            <FaCheck className="text-green-600 mt-1" />
+            <FaCheck className="text-blue-900 mt-1" />
             QA (Quality Assurance) Excellence
           </li>
           <li className="flex items-start gap-2">
-            <FaCheck className="text-green-600 mt-1" />
+            <FaCheck className="text-blue-900 mt-1" />
             Scalability and Automation
           </li>
         </ul>
       </div>
     </div>
 
-    {/* Bottom 3 floating cards - only visible on md+ */}
+    {/* Bottom Floating Cards - desktop only */}
     <div className="hidden md:block absolute bottom-0 left-[30%] translate-y-1/2 z-20">
       <div className="flex flex-col md:flex-row gap-4">
         <div className="bg-teal-700 text-white p-6 rounded-lg shadow-lg w-60">
@@ -604,9 +575,30 @@ const team = [
       </div>
     </div>
   </div>
+
+  {/* Mobile version of the bottom cards */}
+  <div className="mt-10 flex flex-col gap-4 md:hidden">
+    <div className="bg-teal-700 text-white p-6 rounded-lg shadow-lg">
+      <h4 className="font-bold text-lg mb-2">OUR VALUE</h4>
+      <p className="text-sm leading-relaxed">
+        We believe in 100% transparency and collaboration to deliver measurable results.
+      </p>
+    </div>
+    <div className="bg-white text-gray-800 p-6 rounded-lg shadow-lg border border-gray-200">
+      <h4 className="font-bold text-lg mb-2">OUR VISION</h4>
+      <p className="text-sm leading-relaxed">
+        Leverage data and innovation for smarter decisions with top-tier solutions.
+      </p>
+    </div>
+    <div className="bg-teal-700 text-white p-6 rounded-lg shadow-lg">
+      <h4 className="font-bold text-lg mb-2">OUR MISSION</h4>
+      <p className="text-sm leading-relaxed">
+        Drive impact by merging technology and strategy to unlock growth.
+      </p>
+    </div>
+  </div>
 </section>
 
- 
 
       {/* Team Section */}
  
@@ -688,10 +680,10 @@ const team = [
       {/* CTA Section */}
       <section className="text-center py-16 bg-[#f3f7f9] px-4">
         <h2 className="text-2xl font-semibold mb-6 text-[#001359]">
-          Pellentesque suscipit <br /> fringilla libero eu.
+          Book a session  today.
         </h2>
-        <button className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition text-sm">
-          Get a Demo →
+        <button className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-green-700 transition text-sm">
+         Book Consultation
         </button>
       </section>
 
@@ -702,7 +694,7 @@ const team = [
     <div className="mb-2">
       <img src="/MT-logo.png" alt="IMT Logo" className="w-24 h-auto" />
     </div>
-                <p className="max-w-sm mb-3">At Interactive Tech Solutions, we are just getting started with solutions, where we explore ideas and implement with simplicity and scalability in mind.</p>
+                <p className="max-w-sm mb-3">At Masterclass Tech, we are just getting started with solutions, where we explore ideas and implement with simplicity and scalability in mind.</p>
                 <div className="flex gap-1">
                
       <div className="flex gap-4">

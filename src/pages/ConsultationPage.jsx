@@ -25,7 +25,6 @@ export default function ConsultationPage() {
     { name: "HOME", path: "/" },
     { name: "ABOUT US", path: "#" },
     { name: "TERMS AND PRIVACY", path: "/privacy" },
-    { name: "BLOG", path: "#" },
   ];
  const [selectedService, setSelectedService] = useState(null);
   const [date, setDate] = useState("");
@@ -282,27 +281,34 @@ const services = [
 
   {/* Services */}
   <div className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-6 mb-10">
-    {services.map((service) => (
-      <div
-        key={service.id}
-        onClick={() => setSelectedService(service.id)}
-        className={`cursor-pointer border rounded-xl p-6 w-full max-w-xs mx-auto shadow-sm transition ${
-          selectedService === service.id ? "border-blue-500" : "border-gray-200"
+  {services.map((service) => (
+    <div
+      key={service.id}
+      onClick={() => setSelectedService(service.id)}
+      className={`cursor-pointer border rounded-xl p-6 w-full max-w-xs mx-auto shadow-sm transition ${
+        selectedService === service.id ? "border-blue-900" : "border-gray-200"
+      }`}
+    >
+      <div className="mb-4">{service.icon}</div>
+      <h3 className="text-lg font-semibold mb-2 text-center">{service.title}</h3>
+      <ul className="text-sm text-gray-600 list-disc list-inside mb-4 text-left">
+        {service.features.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+      <button
+        className={`px-4 py-2 w-full rounded-md transition ${
+          selectedService === service.id
+            ? "bg-blue-900 text-white border-blue-900"
+            : "border border-dashed border-gray-300 text-gray-600 hover:bg-gray-100"
         }`}
       >
-        <div className="mb-4">{service.icon}</div>
-        <h3 className="text-lg font-semibold mb-2 text-center">{service.title}</h3>
-        <ul className="text-sm text-gray-600 list-disc list-inside mb-4 text-left">
-          {service.features.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-        <button className="px-4 py-2 w-full border border-dashed border-gray-300 rounded-md text-gray-600 hover:bg-gray-100">
-          Click to Select
-        </button>
-      </div>
-    ))}
-  </div>
+        {selectedService === service.id ? "Selected" : "Click to Select"}
+      </button>
+    </div>
+  ))}
+</div>
+
       {/* Time Slot */}
     <div className="bg-gray-50 p-6 rounded-xl shadow-sm max-w-3xl mx-auto mb-10">
   <h3 className="text-xl font-semibold mb-4">Choose a Time Slot</h3>
@@ -395,7 +401,7 @@ hover:bg-blue-800"
           <div className="mb-6 md:mb-0">
             <img src="/MT-logo.png" alt="IMT Logo" className="w-24 h-auto mb-2" />
             <p className="max-w-sm mb-3">
-              At Interactive Tech Solutions, we are just getting started with
+              At Masterclass Tech, we are just getting started with
               solutions, where we explore ideas and implement with simplicity and
               scalability in mind.
             </p>
