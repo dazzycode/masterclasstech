@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import {
     FaCheckCircle,
@@ -14,7 +14,7 @@ import { Link, useLocation } from "react-router-dom";
 import { FaLaptopCode } from "react-icons/fa";
 import { MdPhoneIphone } from "react-icons/md";
 import { FaPalette } from "react-icons/fa";
-
+import axios from "axios";
  
 export default function ConsultationPage() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -27,8 +27,73 @@ export default function ConsultationPage() {
     { name: "TERMS AND PRIVACY", path: "/privacy" },
   ];
  const [selectedService, setSelectedService] = useState(null);
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
+ 
+ const [showSuccess, setShowSuccess] = useState(false);
+
+
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [minDate, setMinDate] = useState("");
+  const [minTime, setMinTime] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    companyName: "",
+    phoneNumber: "",
+    projectSummary: ""
+  });
+
+  useEffect(() => {
+    // Set today's date as min date
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, "0");
+    const dd = String(today.getDate()).padStart(2, "0");
+    setMinDate(`${yyyy}-${mm}-${dd}`);
+
+    // Set minimum time: current time + 3 hours
+    const future = new Date(today.getTime() + 3 * 60 * 60 * 1000);
+    const hh = String(future.getHours()).padStart(2, "0");
+    const mins = String(future.getMinutes()).padStart(2, "0");
+    setMinTime(`${hh}:${mins}`);
+  }, []);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      // Create user first
+      const userRes = await axios.post("https://booking-apps-zv0v.onrender.com/api/users", formData);
+      const userId = userRes.data._id;
+
+      // Then create booking
+      await axios.post("https://booking-apps-zv0v.onrender.com/api/bookings", {
+        userId,
+        date,
+        time,
+        notes: formData.projectSummary
+      });
+
+      alert("✅ Booking successful!");
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        companyName: "",
+        phoneNumber: "",
+        projectSummary: ""
+      });
+      setDate("");
+      setTime("");
+    } catch (error) {
+      console.error("Booking failed:", error);
+      alert("❌ Booking failed. Please try again.");
+    }
+  };
+
 
 
 const services = [
@@ -307,93 +372,111 @@ const services = [
       </button>
     </div>
   ))}
-</div>
+</div></div>
 
       {/* Time Slot */}
-    <div className="bg-gray-50 p-6 rounded-xl shadow-sm max-w-3xl mx-auto mb-10">
-  <h3 className="text-xl font-semibold mb-4">Choose a Time Slot</h3>
-
-  <div className="flex flex-col md:flex-row items-start gap-6">
-    {/* Date Picker */}
-    <div className="w-full md:w-1/2">
-      <label className="block text-sm font-medium mb-1">Select Date</label>
-      <input
-        type="date"
-        className="w-full border p-3 rounded-md"
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
-      />
-    </div>
-
-    {/* Time Picker */}
-    <div className="w-full md:w-1/2">
-      <label className="block text-sm font-medium mb-1">Select Time</label>
-      <input
-        type="time"
-        className="w-full border p-3 rounded-md"
-        value={time}
-        onChange={(e) => setTime(e.target.value)}
-      />
-    </div>
-  </div>
-
-  {/* Action Buttons */}
-  <div className="flex justify-end gap-4 mt-6">
-    <button
-      className="px-5 py-2 rounded-md border border-blue-800 text-blue-800 hover:bg-blue-800  hover:text-white transition"
-    >
-      Cancel
-    </button>
-    <button
-      className="px-5 py-2 rounded-md bg-blue-800 text-white hover:bg-[#001040] transition"
-    >
-      Save
-    </button>
-  </div>
-</div>
-
-
-      {/* User Info */}
-      <div className="max-w-3xl mx-auto bg-white rounded-xl p-6 border shadow-sm">
-        <h3 className="text-xl font-semibold mb-4">Your Information</h3>
-        <form className="space-y-4">
-          <input
-            type="text"
-            placeholder="Enter your name"
-            className="w-full border rounded p-3 bg-blue-50 focus:outline-none"
-          />
-          <input
-            type="email"
-            placeholder="Enter your email"
-            className="w-full border rounded p-3 bg-blue-50 focus:outline-none"
-          />
-          <input
-            type="text"
-            placeholder="Enter your company name"
-            className="w-full border rounded p-3 bg-blue-50 focus:outline-none"
-          />
-          <input
-            type="tel"
-            placeholder="Enter your phone number"
-            className="w-full border rounded p-3 bg-blue-50 focus:outline-none"
-          />
-          <textarea
-            rows="4"
-            placeholder="Project Summary"
-            className="w-full border rounded p-3 bg-blue-50 focus:outline-none"
-          />
-          <button
-            type="submit"
-            className="bg-blue-900 text-white py-2 px-6 rounded-lg mt-2 
-hover:bg-blue-800"
-          >
-            Book Consultation
-          </button>
-        </form>
-      </div>
-    </div>
-
+    
+ 
+    <div className="bg-gray-50 p-6 rounded-xl shadow-sm max-w-3xl mx-auto mb-10">
+      <h4 className="font-semibold mb-4">Choose a Time Slot</h4>
+      <div className="flex flex-col md:flex-row items-start gap-6">
+        <div className="w-full md:w-1/2">
+          <label className="block text-sm font-medium mb-1">Select Date</label>
+          <input
+            type="date"
+            className="w-full border p-3 rounded-md"
+            min={minDate}
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            required
+          />
+        </div>
+        <div className="w-full md:w-1/2">
+          <label className="block text-sm font-medium mb-1">Select Time</label>
+          <input
+            type="time"
+            className="w-full border p-3 rounded-md"
+            min={minTime}
+            value={time}
+            onChange={(e) => setTime(e.target.value)}
+            required
+          />
+        </div>
       </div>
+
+      <form onSubmit={handleSubmit} className="space-y-6 mt-6">
+        <h3 className="text-xl font-semibold">Your Information</h3>
+        <input
+          type="text"
+          name="name"
+          placeholder="Enter your name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+          className="w-full border rounded p-3 bg-blue-50 focus:outline-none"
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter your email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+          className="w-full border rounded p-3 bg-blue-50 focus:outline-none"
+        />
+        <input
+          type="text"
+          name="companyName"
+          placeholder="Enter your company name"
+          value={formData.companyName}
+          onChange={handleChange}
+          className="w-full border rounded p-3 bg-blue-50 focus:outline-none"
+        />
+        <input
+          type="tel"
+          name="phoneNumber"
+          placeholder="Enter your phone number"
+          value={formData.phoneNumber}
+          onChange={handleChange}
+          required
+          className="w-full border rounded p-3 bg-blue-50 focus:outline-none"
+        />
+        <textarea
+          name="projectSummary"
+          rows="4"
+          placeholder="Project Summary"
+          value={formData.projectSummary}
+          onChange={handleChange}
+          className="w-full border rounded p-3 bg-blue-50 focus:outline-none"
+        />
+       <button
+  type="submit"
+  className="bg-blue-900 text-white py-2 px-6 rounded-lg hover:bg-blue-400"
+  onClick={() => {
+    
+    setShowSuccess(true);
+  }}
+>
+  Book Consultation
+</button>
+{showSuccess && (
+  <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+    <div className="bg-white p-6 rounded-xl shadow-xl text-center">
+      <h2 className="text-xl font-semibold text-green-600 mb-2">Booking Successful!</h2>
+      <p className="text-gray-700 mb-4">Your consultation has been booked.</p>
+      <button
+        onClick={() => setShowSuccess(false)}
+        className="bg-blue-800 text-white py-2 px-4 rounded hover:bg-blue-900"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+)}
+
+      </form>
+    </div>
+ </div>
 
       {/* Footer */}
       <footer className="bg-gray-50 mt-12 py-10 text-sm text-gray-600">
