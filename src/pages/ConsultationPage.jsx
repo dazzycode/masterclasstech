@@ -15,7 +15,9 @@ import { FaLaptopCode } from "react-icons/fa";
 import { MdPhoneIphone } from "react-icons/md";
 import { FaPalette } from "react-icons/fa";
 import axios from "axios";
- 
+ import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 export default function ConsultationPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
@@ -29,71 +31,106 @@ export default function ConsultationPage() {
  const [selectedService, setSelectedService] = useState(null);
  
  const [showSuccess, setShowSuccess] = useState(false);
+const [date, setDate] = useState("");
+const [time, setTime] = useState("");
+const [availableTimes, setAvailableTimes] = useState([]);
 
+const [formData, setFormData] = useState({
+  name: "",
+  email: "",
+  companyName: "",
+  phoneNumber: "",
+  projectSummary: ""
+});
 
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-  const [minDate, setMinDate] = useState("");
-  const [minTime, setMinTime] = useState("");
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    companyName: "",
-    phoneNumber: "",
-    projectSummary: ""
-  });
+const minDate = new Date().toISOString().split("T")[0]; 
 
-  useEffect(() => {
-    // Set today's date as min date
-    const today = new Date();
-    const yyyy = today.getFullYear();
-    const mm = String(today.getMonth() + 1).padStart(2, "0");
-    const dd = String(today.getDate()).padStart(2, "0");
-    setMinDate(`${yyyy}-${mm}-${dd}`);
+//  Fetch available slots
+useEffect(() => {
+  const fetchSlots = async () => {
+    if (!date) return;
 
-    // Set minimum time: current time + 3 hours
-    const future = new Date(today.getTime() + 3 * 60 * 60 * 1000);
-    const hh = String(future.getHours()).padStart(2, "0");
-    const mins = String(future.getMinutes()).padStart(2, "0");
-    setMinTime(`${hh}:${mins}`);
-  }, []);
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
     try {
-      // Create user first
-      const userRes = await axios.post("https://booking-apps-zv0v.onrender.com/api/users", formData);
-      const userId = userRes.data._id;
+      const response = await axios.get(
+        `https://booking-apps-zv0v.onrender.com/api/time-slot/availiable`,
+        {
+          params: {
+            date: date, // format: YYYY-MM-DD (already correct from input)
+            includeWeekends: false,
+            duration: 60,
+          },
+        }
+      );
 
-      // Then create booking
-      await axios.post("https://booking-apps-zv0v.onrender.com/api/bookings", {
-        userId,
-        date,
-        time,
-        notes: formData.projectSummary
-      });
+      let slots = response.data;
+      console.log("📦 All Slots from API:", slots);
 
-      alert("✅ Booking successful!");
-      // Reset form
-      setFormData({
-        name: "",
-        email: "",
-        companyName: "",
-        phoneNumber: "",
-        projectSummary: ""
-      });
-      setDate("");
-      setTime("");
-    } catch (error) {
-      console.error("Booking failed:", error);
-      alert("❌ Booking failed. Please try again.");
+      const now = new Date();
+      const selectedDate = new Date(date);
+      const isToday = now.toDateString() === selectedDate.toDateString();
+
+      if (isToday) {
+        const threshold = new Date(now.getTime() + 3 * 60 * 60 * 1000); // Now + 3 hours
+        slots = slots.filter((slot) => {
+          const [hours, minutes] = slot.startTime.split(":");
+          const slotDateTime = new Date(date);
+          slotDateTime.setHours(+hours);
+          slotDateTime.setMinutes(+minutes);
+          return slotDateTime >= threshold;
+        });
+      }
+
+      setAvailableTimes(slots);
+      console.log("✅ Filtered Slots:", slots);
+    } catch (err) {
+      console.error("❌ Error fetching time slots:", err);
     }
   };
 
+  fetchSlots();
+}, [date]);
+
+//  Handle user input
+const handleChange = (e) => {
+  setFormData({ ...formData, [e.target.name]: e.target.value });
+};
+
+//  Booking flow
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const userRes = await axios.post(
+      "https://booking-apps-zv0v.onrender.com/api/users",
+      formData
+    );
+
+    const userId = userRes.data._id;
+
+    await axios.post("https://booking-apps-zv0v.onrender.com/api/bookings", {
+      userId,
+      date,
+      time,
+      notes: formData.projectSummary
+    });
+
+    setShowSuccess(true);
+
+    // Reset all
+    setFormData({
+      name: "",
+      email: "",
+      companyName: "",
+      phoneNumber: "",
+      projectSummary: ""
+    });
+    setDate("");
+    setTime("");
+    setAvailableTimes([]);
+  } catch (err) {
+    console.error("Booking failed:", err);
+    alert("❌ Booking failed. Please try again.");
+  }
+};
 
 
 const services = [
@@ -336,7 +373,7 @@ const services = [
 </div>
 
         {/* Services Grid */}
-      <div className="min-h-screen bg-white p-6">
+      <div className="min-h-screen bg-white mb-10 p-6">
   <h2 className="text-2xl text-[#001359] font-bold text-center mb-2">
     What would you like to talk about?
   </h2>
@@ -345,7 +382,7 @@ const services = [
   </p>
 
   {/* Services */}
-  <div className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-6 mb-10">
+  <div className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-6 mb-5">
   {services.map((service) => (
     <div
       key={service.id}
@@ -372,14 +409,18 @@ const services = [
       </button>
     </div>
   ))}
-</div></div>
+</div>
 
       {/* Time Slot */}
     
  
-    <div className="bg-gray-50 p-6 rounded-xl shadow-sm max-w-3xl mx-auto mb-10">
+  
+  
+    <div className="bg-gray-50 max-w-7xl shadow-sm mt-10  mx-auto px-6 mb-10 ">
       <h4 className="font-semibold mb-4">Choose a Time Slot</h4>
+
       <div className="flex flex-col md:flex-row items-start gap-6">
+        {/* Date Picker */}
         <div className="w-full md:w-1/2">
           <label className="block text-sm font-medium mb-1">Select Date</label>
           <input
@@ -391,18 +432,43 @@ const services = [
             required
           />
         </div>
-        <div className="w-full md:w-1/2">
-          <label className="block text-sm font-medium mb-1">Select Time</label>
-          <input
-            type="time"
-            className="w-full border p-3 rounded-md"
-            min={minTime}
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-            required
-          />
-        </div>
+
+        {/* Time Slot Dropdown */}
+     
+
+<div className="w-full md:w-1/2">
+  <label className="block text-sm font-medium mb-1">Select Time</label>
+  <DatePicker
+    selected={time ? new Date(`${date}T${time}`) : null}
+    onChange={(selectedTime) => {
+      if (!selectedTime) return;
+      const formattedTime = selectedTime.toTimeString().slice(0, 5); // "14:00"
+
+      const isAvailable = availableTimes.some(
+        (slot) => slot.startTime === formattedTime
+      );
+
+      if (isAvailable) {
+        setTime(formattedTime);
+      } else {
+        alert("❌ Time not available. Select a time at least 3 hours from now.");
+      }
+    }}
+    showTimeSelect
+    showTimeSelectOnly
+    timeIntervals={60}
+    timeCaption="Time"
+    dateFormat="h:mm aa"
+    placeholderText="Select a time"
+    className="w-full border p-3 rounded-md"
+    disabled={!date} // 👈 only disable if date is not selected
+  />
+</div>
+
+
       </div>
+  
+
 
       <form onSubmit={handleSubmit} className="space-y-6 mt-6">
         <h3 className="text-xl font-semibold">Your Information</h3>
@@ -533,6 +599,6 @@ Masterclasstech00@gmail.com  </p>
         </div>
         <div className="text-center mt-8">© 2025 Masterclass Tech. All rights reserved.</div>
       </footer>
-    </div>
+    </div></div>
   );
 }
