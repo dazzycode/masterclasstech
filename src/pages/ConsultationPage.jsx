@@ -436,6 +436,8 @@ const services = [
         {/* Time Slot Dropdown */}
      
 
+
+
 <div className="w-full md:w-1/2">
   <label className="block text-sm font-medium mb-1">Select Time</label>
   <DatePicker
@@ -461,9 +463,15 @@ const services = [
     dateFormat="h:mm aa"
     placeholderText="Select a time"
     className="w-full border p-3 rounded-md"
-    disabled={!date} // 👈 only disable if date is not selected
+    minTime={
+      new Date().toDateString() === new Date(date).toDateString()
+        ? new Date(new Date().getTime() + 3 * 60 * 60 * 1000)
+        : new Date().setHours(0, 0)
+    }
+    maxTime={new Date().setHours(23, 59)}
   />
 </div>
+
 
 
       </div>
